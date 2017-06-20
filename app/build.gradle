@@ -40,6 +40,12 @@ dependencies {
     compile "com.android.support:appcompat-v7:$rootProject.supportLibraryVersion"
     compile "com.android.support:design:$rootProject.supportLibraryVersion"
 
+    // font
+    compile "uk.co.chrisjenx:calligraphy:$rootProject.calligraphyVersion"
+
+    // network
+    compile "com.amitshekhar.android:rx2-android-networking:$rootProject.rx2FastAndroidNetworking"
+
     // parser
     compile "com.google.code.gson:gson:$rootProject.gsonVersion"
 

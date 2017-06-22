@@ -6,6 +6,7 @@ import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.interceptors.HttpLoggingInterceptor.Level;
 import com.lethalskillzz.bakingapp.data.DataManager;
 import com.lethalskillzz.bakingapp.di.component.ApplicationComponent;
+import com.lethalskillzz.bakingapp.di.component.DaggerApplicationComponent;
 import com.lethalskillzz.bakingapp.di.module.ApplicationModule;
 import com.lethalskillzz.bakingapp.utils.AppLogger;
 
@@ -18,7 +19,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
  * Created by ibrahimabdulkadir on 19/06/2017.
  */
 
-public class MvpApp extends Application {
+public class Baker extends Application {
 
     @Inject
     DataManager mDataManager;

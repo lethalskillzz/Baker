@@ -8,6 +8,7 @@ import com.lethalskillzz.bakingapp.data.AppDataManager;
 import com.lethalskillzz.bakingapp.data.DataManager;
 import com.lethalskillzz.bakingapp.di.ApplicationContext;
 import com.lethalskillzz.bakingapp.di.DatabaseInfo;
+import com.lethalskillzz.bakingapp.utils.AppConstants;
 
 import javax.inject.Singleton;
 
@@ -52,19 +53,19 @@ public class ApplicationModule {
         return appDataManager;
     }
 
-    @Provides
-    @Singleton
-    DbHelper provideDbHelper(AppDbHelper appDbHelper) {
-        return appDbHelper;
-    }
-
-
-    @Provides
-    @Singleton
-    ApiHelper provideApiHelper(AppApiHelper appApiHelper) {
-        return appApiHelper;
-    }
-
+//    @Provides
+//    @Singleton
+//    DbHelper provideDbHelper(AppDbHelper appDbHelper) {
+//        return appDbHelper;
+//    }
+//
+//
+//    @Provides
+//    @Singleton
+//    ApiHelper provideApiHelper(AppApiHelper appApiHelper) {
+//        return appApiHelper;
+//    }
+//
 
     @Provides
     @Singleton

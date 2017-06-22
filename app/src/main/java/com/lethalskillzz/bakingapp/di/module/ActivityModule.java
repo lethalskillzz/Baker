@@ -4,8 +4,25 @@ import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 
-
-import java.util.ArrayList;
+import com.lethalskillzz.bakingapp.di.ActivityContext;
+import com.lethalskillzz.bakingapp.di.PerActivity;
+import com.lethalskillzz.bakingapp.ui.ingredient.IngredientMvpPresenter;
+import com.lethalskillzz.bakingapp.ui.ingredient.IngredientMvpView;
+import com.lethalskillzz.bakingapp.ui.ingredient.IngredientPresenter;
+import com.lethalskillzz.bakingapp.ui.recipe.RecipeMvpPresenter;
+import com.lethalskillzz.bakingapp.ui.recipe.RecipeMvpView;
+import com.lethalskillzz.bakingapp.ui.recipe.RecipePresenter;
+import com.lethalskillzz.bakingapp.ui.recipelist.RecipeListMvpPresenter;
+import com.lethalskillzz.bakingapp.ui.recipelist.RecipeListMvpView;
+import com.lethalskillzz.bakingapp.ui.recipelist.RecipeListPresenter;
+import com.lethalskillzz.bakingapp.ui.splash.SplashMvpPresenter;
+import com.lethalskillzz.bakingapp.ui.splash.SplashMvpView;
+import com.lethalskillzz.bakingapp.ui.splash.SplashPresenter;
+import com.lethalskillzz.bakingapp.ui.step.StepMvpPresenter;
+import com.lethalskillzz.bakingapp.ui.step.StepMvpView;
+import com.lethalskillzz.bakingapp.ui.step.StepPresenter;
+import com.lethalskillzz.bakingapp.utils.rx.AppSchedulerProvider;
+import com.lethalskillzz.bakingapp.utils.rx.SchedulerProvider;
 
 import dagger.Module;
 import dagger.Provides;
@@ -45,6 +62,7 @@ public class ActivityModule {
         return new AppSchedulerProvider();
     }
 
+
     @Provides
     @PerActivity
     SplashMvpPresenter<SplashMvpView> provideSplashPresenter(
@@ -53,63 +71,46 @@ public class ActivityModule {
     }
 
     @Provides
-    AboutMvpPresenter<AboutMvpView> provideAboutPresenter(
-            AboutPresenter<AboutMvpView> presenter) {
+    @PerActivity
+    IngredientMvpPresenter<IngredientMvpView> provideIngredientPresenter(
+            IngredientPresenter<IngredientMvpView> presenter) {
         return presenter;
     }
 
     @Provides
     @PerActivity
-    LoginMvpPresenter<LoginMvpView> provideLoginPresenter(
-            LoginPresenter<LoginMvpView> presenter) {
+    RecipeMvpPresenter<RecipeMvpView> provideRecipePresenter(
+            RecipePresenter<RecipeMvpView> presenter) {
         return presenter;
     }
 
     @Provides
-    @PerActivity
-    MainMvpPresenter<MainMvpView> provideMainPresenter(
-            MainPresenter<MainMvpView> presenter) {
+    RecipeListMvpPresenter<RecipeListMvpView> provideRecipeListPresenter(
+            RecipeListPresenter<RecipeListMvpView> presenter) {
         return presenter;
     }
 
     @Provides
-    RatingDialogMvpPresenter<RatingDialogMvpView> provideRateUsPresenter(
-            RatingDialogPresenter<RatingDialogMvpView> presenter) {
+    StepMvpPresenter<StepMvpView> provideStepPresenter(
+            StepPresenter<StepMvpView> presenter) {
         return presenter;
     }
 
-    @Provides
-    FeedMvpPresenter<FeedMvpView> provideFeedPresenter(
-            FeedPresenter<FeedMvpView> presenter) {
-        return presenter;
-    }
 
-    @Provides
-    OpenSourceMvpPresenter<OpenSourceMvpView> provideOpenSourcePresenter(
-            OpenSourcePresenter<OpenSourceMvpView> presenter) {
-        return presenter;
-    }
-
-    @Provides
-    BlogMvpPresenter<BlogMvpView> provideBlogMvpPresenter(
-            BlogPresenter<BlogMvpView> presenter) {
-        return presenter;
-    }
-
-    @Provides
-    FeedPagerAdapter provideFeedPagerAdapter(AppCompatActivity activity) {
-        return new FeedPagerAdapter(activity.getSupportFragmentManager());
-    }
-
-    @Provides
-    OpenSourceAdapter provideOpenSourceAdapter() {
-        return new OpenSourceAdapter(new ArrayList<OpenSourceResponse.Repo>());
-    }
-
-    @Provides
-    BlogAdapter provideBlogAdapter() {
-        return new BlogAdapter(new ArrayList<BlogResponse.Blog>());
-    }
+//    @Provides
+//    FeedPagerAdapter provideFeedPagerAdapter(AppCompatActivity activity) {
+//        return new FeedPagerAdapter(activity.getSupportFragmentManager());
+//    }
+//
+//    @Provides
+//    OpenSourceAdapter provideOpenSourceAdapter() {
+//        return new OpenSourceAdapter(new ArrayList<OpenSourceResponse.Repo>());
+//    }
+//
+//    @Provides
+//    BlogAdapter provideBlogAdapter() {
+//        return new BlogAdapter(new ArrayList<BlogResponse.Blog>());
+//    }
 
     @Provides
     LinearLayoutManager provideLinearLayoutManager(AppCompatActivity activity) {

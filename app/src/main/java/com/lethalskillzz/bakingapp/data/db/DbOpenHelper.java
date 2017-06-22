@@ -2,21 +2,24 @@ package com.lethalskillzz.bakingapp.data.db;
 
 import android.content.Context;
 
-import com.lethalskillzz.bakingapp.di.module.ApplicationContext;
-import com.lethalskillzz.bakingapp.di.module.DatabaseInfo;
+import com.lethalskillzz.bakingapp.di.ApplicationContext;
+import com.lethalskillzz.bakingapp.di.DatabaseInfo;
+import com.lethalskillzz.bakingapp.utils.AppLogger;
 
 import org.greenrobot.greendao.database.Database;
 
 import javax.inject.Inject;
+import javax.inject.Singleton;
 
 /**
- * Created by ibrahimabdulkadir on 19/06/2017.
+ * Created by ibrahimabdulkadir on 20/06/2017.
  */
 
-public class DataBaseHelper extends DaoMaster.OpenHelper {
+@Singleton
+public class DbOpenHelper extends DaoMaster.OpenHelper {
 
     @Inject
-    public DataBaseHelper(@ApplicationContext Context context, @DatabaseInfo String name) {
+    public DbOpenHelper(@ApplicationContext Context context, @DatabaseInfo String name) {
         super(context, name);
     }
 
@@ -31,5 +34,4 @@ public class DataBaseHelper extends DaoMaster.OpenHelper {
                 // + UserDao.Properties.Name.columnName + " TEXT DEFAULT 'DEFAULT_VAL'");
         }
     }
-
 }

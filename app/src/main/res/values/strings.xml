@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Baker</string>
 
+    <string name="splash_text">Udacity</string>
+
     <!--App Message-->
     <string name="api_retry_error">Please retry!</string>
     <string name="api_default_error">Something wrong happened!</string>

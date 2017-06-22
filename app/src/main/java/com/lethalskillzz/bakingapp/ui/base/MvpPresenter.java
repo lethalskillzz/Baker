@@ -4,8 +4,6 @@ package com.lethalskillzz.bakingapp.ui.base;
  * Created by ibrahimabdulkadir on 20/06/2017.
  */
 
-import com.androidnetworking.error.ANError;
-
 /**
  * Every presenter in the app must either implement this interface or extend BasePresenter
  * indicating the MvpView type that wants to be attached with.
@@ -16,7 +14,7 @@ public interface MvpPresenter<V extends MvpView> {
 
     void onDetach();
 
-    void handleApiError(ANError error);
+    //void handleApiError(ANError error);
 
-    void setUserAsLoggedOut();
+    //void setUserAsLoggedOut();
 }

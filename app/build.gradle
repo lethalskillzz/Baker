@@ -1,4 +1,7 @@
 apply plugin: 'com.android.application'
+apply plugin: 'org.greenrobot.greendao'
+apply from: '../config/quality/quality.gradle'
+
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -29,6 +32,9 @@ android {
 }
 
 
+greendao {
+    schemaVersion 1
+}
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
@@ -69,7 +75,6 @@ dependencies {
     compile "com.jakewharton:butterknife:$rootProject.butterKnifeVersion"
     annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.butterKnifeVersion"
 
-
     // logger
     compile "com.jakewharton.timber:timber:$rootProject.timberVersion"
 
@@ -83,6 +88,9 @@ dependencies {
     androidTestCompile "com.android.support.test.espresso:espresso-intents:$rootProject.espressoVersion"
     androidTestCompile "org.mockito:mockito-core:$rootProject.mockitoVersion"
     androidTestAnnotationProcessor "com.google.dagger:dagger-compiler:$rootProject.dagger2Version"
+    compile 'javax.inject:javax.inject:1'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    provided 'javax.annotation:jsr250-api:1.0'
 }
 
 configurations.all {

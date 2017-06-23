@@ -16,7 +16,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.lethalskillzz.bakingapp.Baker;
+import com.lethalskillzz.bakingapp.App;
 import com.lethalskillzz.bakingapp.R;
 import com.lethalskillzz.bakingapp.di.component.ActivityComponent;
 import com.lethalskillzz.bakingapp.di.component.DaggerActivityComponent;
@@ -45,7 +45,7 @@ public abstract class BaseActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         mActivityComponent = DaggerActivityComponent.builder()
                 .activityModule(new ActivityModule(this))
-                .applicationComponent(((Baker) getApplication()).getComponent())
+                .applicationComponent(((App) getApplication()).getComponent())
                 .build();
 
     }

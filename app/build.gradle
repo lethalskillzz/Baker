@@ -36,61 +36,105 @@ greendao {
     schemaVersion 1
 }
 
+
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
+
+
+    // Library definitions
+    def supportLib = rootProject.ext.supportDependencies
+    def rx = rootProject.ext.rxDependencies
+    def dagger = rootProject.ext.daggerDependencies
+    def butterKnife = rootProject.ext.butterKnifeDependencies
+    def retrofit = rootProject.ext.retrofitDependencies
+    def okhttp = rootProject.ext.okhttpDependency
+    def gson = rootProject.ext.gsonDependency
+    def greenDao = rootProject.ext.greenDaoDependency
+    def calligraphy = rootProject.ext.calligraphyDependency
+    def timber = rootProject.ext.timberDependency
+    def debugDB = rootProject.ext.debugDBDependency
+    def exoPlayer = rootProject.ext.exoPlayerDependency
+
+
+    // Test definitions
+    def junit = rootProject.ext.junitDependency
+    def mockito = rootProject.ext.mockitoDependency
+    def espresso = rootProject.ext.espressoDependency
+    def espressoExclude = rootProject.ext.espressoExcludeGroups
+    def espressoContrib = rootProject.ext.espressoContribDependency
+    def espressoIntents = rootProject.ext.espressoIntentsDependency
+    def espressoIdlingResource = rootProject.ext.espressoIdlingResDependency
+
+
+
+    // Support Libraries
+    compile supportLib.appCompat
+    compile supportLib.design
+    compile supportLib.cardView
+    compile supportLib.recyclerView
+
+
+    // Rx
+    compile rx.rxAndroid
+    compile rx.rxJava
+    compile rx.rxJavaInterop
+
+    // Dagger
+    compile dagger.dagger
+    annotationProcessor dagger.daggerApt
+    provided 'javax.annotation:jsr250-api:1.0'
+    compile 'javax.inject:javax.inject:1'
+
+
+    // ButterKnife
+    compile butterKnife.butterknife
+    annotationProcessor butterKnife.butterknifeApt
+
+    // Retrofit
+    compile retrofit.retrofit
+    compile retrofit.rxJavaAdapter
+    compile retrofit.gsonConverter
+
+    // Others
+    compile okhttp
+    compile gson
+    compile greenDao
+    compile calligraphy
+    compile timber
+    compile debugDB
+    compile exoPlayer
+
+
+
+    // Local unit test
+    testCompile junit
+    testCompile mockito
+    testAnnotationProcessor dagger.daggerApt
+
+    // UI test
+    androidTestCompile(espresso, {
+        exclude group: espressoExclude.group1, module: espressoExclude.module1
+        exclude group: espressoExclude.group2, module: espressoExclude.module2
+        exclude group: espressoExclude.group3, module: espressoExclude.module3
+        exclude group: espressoExclude.group4, module: espressoExclude.module4
+        exclude group: espressoExclude.group5, module: espressoExclude.module5
     })
 
-    // android support libraries
-    compile "com.android.support:appcompat-v7:$rootProject.supportLibraryVersion"
-    compile "com.android.support:design:$rootProject.supportLibraryVersion"
+    androidTestCompile(espressoContrib, {
+        exclude group: espressoExclude.group1, module: espressoExclude.module1
+        exclude group: espressoExclude.group2, module: espressoExclude.module2
+        exclude group: espressoExclude.group3, module: espressoExclude.module3
+        exclude group: espressoExclude.group4, module: espressoExclude.module4
+        exclude group: espressoExclude.group5, module: espressoExclude.module5
+    })
 
-    // font
-    compile "uk.co.chrisjenx:calligraphy:$rootProject.calligraphyVersion"
+    androidTestCompile(espressoIntents, {
+        exclude group: espressoExclude.group1, module: espressoExclude.module1
+    })
 
-    // network
-    compile "com.amitshekhar.android:rx2-android-networking:$rootProject.rx2FastAndroidNetworking"
+    compile espressoIdlingResource
 
-    // parser
-    compile "com.google.code.gson:gson:$rootProject.gsonVersion"
 
-    // database
-    compile "org.greenrobot:greendao:$rootProject.greenDaoVersion"
-
-    // debug database
-    debugCompile "com.amitshekhar.android:debug-db:$rootProject.debugDBVersion"
-
-    // dependency injection
-    compile "com.google.dagger:dagger:$rootProject.dagger2Version"
-    annotationProcessor "com.google.dagger:dagger-compiler:$rootProject.dagger2Version"
-    provided 'javax.annotation:jsr250-api:1.0'
-    compile 'javax.inject:javax.inject:1'
-
-    // reactive
-    compile "io.reactivex.rxjava2:rxjava:$rootProject.rxjava2Version"
-    compile "io.reactivex.rxjava2:rxandroid:$rootProject.rxandroidVersion"
-
-    // code generator for view
-    compile "com.jakewharton:butterknife:$rootProject.butterKnifeVersion"
-    annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.butterKnifeVersion"
-
-    // logger
-    compile "com.jakewharton.timber:timber:$rootProject.timberVersion"
-
-    // dependencies for local unit tests
-    testCompile "junit:junit:$rootProject.ext.junitVersion"
-    testCompile "org.mockito:mockito-core:$rootProject.mockitoVersion"
-    testAnnotationProcessor "com.google.dagger:dagger-compiler:$rootProject.dagger2Version"
-
-    // UI Testing
-    androidTestCompile "com.android.support.test.espresso:espresso-core:$rootProject.espressoVersion"
-    androidTestCompile "com.android.support.test.espresso:espresso-intents:$rootProject.espressoVersion"
-    androidTestCompile "org.mockito:mockito-core:$rootProject.mockitoVersion"
-    androidTestAnnotationProcessor "com.google.dagger:dagger-compiler:$rootProject.dagger2Version"
-    compile 'javax.inject:javax.inject:1'
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    provided 'javax.annotation:jsr250-api:1.0'
 }
 
 configurations.all {

@@ -3,7 +3,7 @@
     package="com.lethalskillzz.bakingapp">
 
     <application
-        android:name="com.lethalskillzz.bakingapp.Baker"
+        android:name="com.lethalskillzz.bakingapp.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"

@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-apply plugin: 'org.greenrobot.greendao'
 apply from: '../config/quality/quality.gradle'
 
 
@@ -17,12 +16,12 @@ android {
 
     buildTypes {
         debug {
-            buildConfigField("String", "BASE_URL", "\"https://d17h27t6h515a5.cloudfront.net/topher\"")
+            buildConfigField("String", "BASE_URL", "\"https://d17h27t6h515a5.cloudfront.net\"")
         }
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            buildConfigField("String", "BASE_URL", "\"https://d17h27t6h515a5.cloudfront.net/topher\"")
+            buildConfigField("String", "BASE_URL", "\"https://d17h27t6h515a5.cloudfront.net\"")
         }
     }
 
@@ -31,10 +30,6 @@ android {
     }
 }
 
-
-greendao {
-    schemaVersion 1
-}
 
 
 dependencies {
@@ -47,7 +42,7 @@ dependencies {
     def dagger = rootProject.ext.daggerDependencies
     def butterKnife = rootProject.ext.butterKnifeDependencies
     def retrofit = rootProject.ext.retrofitDependencies
-    def okhttp = rootProject.ext.okhttpDependency
+    def okhttpoggingInterceptor = rootProject.ext.okhttpoggingInterceptorDependency
     def gson = rootProject.ext.gsonDependency
     def greenDao = rootProject.ext.greenDaoDependency
     def calligraphy = rootProject.ext.calligraphyDependency
@@ -96,14 +91,13 @@ dependencies {
     compile retrofit.gsonConverter
 
     // Others
-    compile okhttp
+    compile okhttpoggingInterceptor
     compile gson
-    compile greenDao
+    compile sqlBrite
     compile calligraphy
     compile timber
     compile debugDB
     compile exoPlayer
-
 
 
     // Local unit test

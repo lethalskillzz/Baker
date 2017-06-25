@@ -23,11 +23,11 @@ public class AppDataManager implements DataManager {
     @Inject
     public AppDataManager(@ApplicationContext Context context
 //                          DbHelper dbHelper,
-//                          ApiHelper apiHelper
+//                          ApiHelper apiService
     ) {
         mContext = context;
 //        mDbHelper = dbHelper;
-//        mApiHelper = apiHelper;
+//        mApiHelper = apiService;
     }
 
 }

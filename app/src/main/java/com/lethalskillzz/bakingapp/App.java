@@ -2,7 +2,6 @@ package com.lethalskillzz.bakingapp;
 
 import android.app.Application;
 
-
 import com.lethalskillzz.bakingapp.data.DataManager;
 import com.lethalskillzz.bakingapp.di.component.ApplicationComponent;
 import com.lethalskillzz.bakingapp.di.component.DaggerApplicationComponent;
@@ -11,7 +10,6 @@ import com.lethalskillzz.bakingapp.utils.AppLogger;
 
 import javax.inject.Inject;
 
-import timber.log.Timber;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
 
@@ -39,11 +37,6 @@ public class App extends Application {
         mApplicationComponent.inject(this);
 
         AppLogger.init();
-
-        if (BuildConfig.DEBUG) {
-            Timber.uprootAll();
-            Timber.plant(new Timber.DebugTree());
-        }
 
         CalligraphyConfig.initDefault(mCalligraphyConfig);
     }

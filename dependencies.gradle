@@ -24,9 +24,9 @@ ext {
     dagger2Version = '2.8'
     butterKnifeVersion = '8.5.1'
     retrofitVersion = "2.3.0"
-    okhttpVersion = "3.8.0"
+    okhttpoggingInterceptorVersion = "3.8.0"
     gsonVersion = '2.8.0'
-    greenDaoVersion = '3.2.0'
+    sqlBriteVersion = "1.1.1"
     calligraphyVersion = '2.2.0'
     timberVersion = '4.5.1'
     debugDBVersion = '1.0.0'
@@ -71,9 +71,9 @@ ext {
             gsonConverter: "com.squareup.retrofit2:converter-gson:${retrofitVersion}",
     ]
 
-    okhttpDependency = "com.squareup.okhttp3:okhttp:${okhttpVersion}"
+    okhttpoggingInterceptorLDependency = "com.squareup.okhttp3:logging-interceptor:${okhttpoggingInterceptorVersion}"
     gsonDependency = "com.google.code.gson:gson:${gsonVersion}"
-    greenDaoDependency = "org.greenrobot:greendao:${greenDaoVersion}"
+    sqlBriteDependency = "com.squareup.sqlbrite:sqlbrite:${sqlBriteVersion}"
     calligraphyDependency = "uk.co.chrisjenx:calligraphy:${calligraphyVersion}"
     timberDependency = "com.jakewharton.timber:timber:${timberVersion}"
     debugDBDependency = "com.amitshekhar.android:debug-db:${debugDBVersion}"

@@ -3,9 +3,10 @@ package com.lethalskillzz.bakingapp.di.module;
 import android.app.Application;
 import android.content.Context;
 
+import com.lethalskillzz.bakingapp.BuildConfig;
 import com.lethalskillzz.bakingapp.R;
-import com.lethalskillzz.bakingapp.data.AppDataManager;
-import com.lethalskillzz.bakingapp.data.DataManager;
+import com.lethalskillzz.bakingapp.data.remote.RecipeService;
+import com.lethalskillzz.bakingapp.data.remote.ServiceFactory;
 import com.lethalskillzz.bakingapp.di.ApplicationContext;
 import com.lethalskillzz.bakingapp.di.DatabaseInfo;
 import com.lethalskillzz.bakingapp.utils.AppConstants;
@@ -41,31 +42,16 @@ public class ApplicationModule {
     }
 
     @Provides
+    @Singleton
+    RecipeService provideRecipeService() {
+        return ServiceFactory.createFrom(RecipeService.class, BuildConfig.BASE_URL);
+    }
+
+    @Provides
     @DatabaseInfo
     String provideDatabaseName() {
         return AppConstants.DB_NAME;
     }
-
-
-    @Provides
-    @Singleton
-    DataManager provideDataManager(AppDataManager appDataManager) {
-        return appDataManager;
-    }
-
-//    @Provides
-//    @Singleton
-//    DbHelper provideDbHelper(AppDbHelper appDbHelper) {
-//        return appDbHelper;
-//    }
-//
-//
-//    @Provides
-//    @Singleton
-//    ApiHelper provideApiHelper(AppApiHelper appApiHelper) {
-//        return appApiHelper;
-//    }
-//
 
     @Provides
     @Singleton

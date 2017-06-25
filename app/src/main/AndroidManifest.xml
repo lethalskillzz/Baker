@@ -11,16 +11,16 @@
         android:theme="@style/MaterialTheme">
 
         <activity
-            android:name=".ui.splash.SplashActivity">
+            android:name=".presentation.splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.ingredient.IngredientActivity" />
-        <activity android:name=".ui.recipe.RecipeActivity" />
-        <activity android:name=".ui.recipelist.RecipeListActivity" />
-        <activity android:name=".ui.step.StepActivity"/>
+        <activity android:name=".presentation.ingredient.IngredientActivity" />
+        <activity android:name=".presentation.recipe.RecipeActivity" />
+        <activity android:name=".presentation.recipelist.RecipeListActivity" />
+        <activity android:name=".presentation.step.StepActivity"/>
     </application>
 
 </manifest>

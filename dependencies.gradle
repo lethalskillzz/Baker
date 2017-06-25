@@ -24,7 +24,7 @@ ext {
     dagger2Version = '2.8'
     butterKnifeVersion = '8.5.1'
     retrofitVersion = "2.3.0"
-    okhttpoggingInterceptorVersion = "3.8.0"
+    okhttpLoggingInterceptorVersion = "3.8.0"
     gsonVersion = '2.8.0'
     sqlBriteVersion = "1.1.1"
     calligraphyVersion = '2.2.0'
@@ -71,7 +71,7 @@ ext {
             gsonConverter: "com.squareup.retrofit2:converter-gson:${retrofitVersion}",
     ]
 
-    okhttpoggingInterceptorLDependency = "com.squareup.okhttp3:logging-interceptor:${okhttpoggingInterceptorVersion}"
+    okhttpLoggingInterceptorDependency = "com.squareup.okhttp3:logging-interceptor:${okhttpLoggingInterceptorVersion}"
     gsonDependency = "com.google.code.gson:gson:${gsonVersion}"
     sqlBriteDependency = "com.squareup.sqlbrite:sqlbrite:${sqlBriteVersion}"
     calligraphyDependency = "uk.co.chrisjenx:calligraphy:${calligraphyVersion}"

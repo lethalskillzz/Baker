@@ -2,7 +2,8 @@ package com.lethalskillzz.bakingapp;
 
 import android.app.Application;
 
-import com.lethalskillzz.bakingapp.data.DataManager;
+import com.facebook.stetho.Stetho;
+import com.lethalskillzz.bakingapp.data.RecipeRepository;
 import com.lethalskillzz.bakingapp.di.component.ApplicationComponent;
 import com.lethalskillzz.bakingapp.di.component.DaggerApplicationComponent;
 import com.lethalskillzz.bakingapp.di.module.ApplicationModule;
@@ -20,7 +21,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 public class App extends Application {
 
     @Inject
-    DataManager mDataManager;
+    RecipeRepository mRecipeRepository;
 
     @Inject
     CalligraphyConfig mCalligraphyConfig;
@@ -36,7 +37,10 @@ public class App extends Application {
 
         mApplicationComponent.inject(this);
 
-        AppLogger.init();
+        if (BuildConfig.DEBUG) {
+            AppLogger.init();
+            Stetho.initializeWithDefaults(this);
+        }
 
         CalligraphyConfig.initDefault(mCalligraphyConfig);
     }

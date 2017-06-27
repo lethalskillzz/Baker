@@ -8,6 +8,7 @@ import android.support.annotation.StringRes;
 import android.support.v4.app.Fragment;
 import android.view.View;
 
+import com.lethalskillzz.bakingapp.di.component.ActivityComponent;
 import com.lethalskillzz.bakingapp.utils.CommonUtils;
 
 import butterknife.Unbinder;

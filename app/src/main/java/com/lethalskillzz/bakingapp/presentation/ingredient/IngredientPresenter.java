@@ -1,8 +1,7 @@
 package com.lethalskillzz.bakingapp.presentation.ingredient;
 
-import com.lethalskillzz.bakingapp.data.DataManager;
+import com.lethalskillzz.bakingapp.data.RecipeRepository;
 import com.lethalskillzz.bakingapp.presentation.base.BasePresenter;
-import com.lethalskillzz.bakingapp.utils.rx.SchedulerProvider;
 
 import javax.inject.Inject;
 
@@ -18,9 +17,8 @@ public class IngredientPresenter <V extends IngredientMvpView> extends BasePrese
     private static final String TAG = "IngredientPresenter";
 
     @Inject
-    public IngredientPresenter(DataManager dataManager,
-                          SchedulerProvider schedulerProvider,
+    public IngredientPresenter(RecipeRepository recipeRepository,
                           CompositeDisposable compositeDisposable) {
-        super(dataManager, schedulerProvider, compositeDisposable);
+        super(recipeRepository, compositeDisposable);
     }
 }

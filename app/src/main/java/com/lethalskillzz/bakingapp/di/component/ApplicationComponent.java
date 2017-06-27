@@ -4,7 +4,7 @@ import android.app.Application;
 import android.content.Context;
 
 import com.lethalskillzz.bakingapp.App;
-import com.lethalskillzz.bakingapp.data.DataManager;
+import com.lethalskillzz.bakingapp.data.RecipeRepository;
 import com.lethalskillzz.bakingapp.di.ApplicationContext;
 import com.lethalskillzz.bakingapp.di.module.ApplicationModule;
 
@@ -27,5 +27,5 @@ public interface ApplicationComponent {
 
     Application application();
 
-    DataManager getDataManager();
+    RecipeRepository getRecipeRepository();
 }

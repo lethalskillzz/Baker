@@ -17,6 +17,8 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.RelativeLayout;
 
+import com.lethalskillzz.bakingapp.di.component.ActivityComponent;
+
 import butterknife.Unbinder;
 
 /**

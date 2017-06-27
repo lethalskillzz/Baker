@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.lethalskillzz.bakingapp.App;
 import com.lethalskillzz.bakingapp.R;
+import com.lethalskillzz.bakingapp.di.component.ActivityComponent;
 import com.lethalskillzz.bakingapp.di.component.DaggerActivityComponent;
 import com.lethalskillzz.bakingapp.di.module.ActivityModule;
 import com.lethalskillzz.bakingapp.utils.CommonUtils;
@@ -46,7 +47,6 @@ public abstract class BaseActivity extends AppCompatActivity
                 .activityModule(new ActivityModule(this))
                 .applicationComponent(((App) getApplication()).getComponent())
                 .build();
-
     }
 
     public ActivityComponent getActivityComponent() {

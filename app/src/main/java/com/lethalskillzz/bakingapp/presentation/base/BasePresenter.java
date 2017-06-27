@@ -4,8 +4,7 @@ package com.lethalskillzz.bakingapp.presentation.base;
  * Created by ibrahimabdulkadir on 20/06/2017.
  */
 
-import com.lethalskillzz.bakingapp.data.DataManager;
-import com.lethalskillzz.bakingapp.utils.rx.SchedulerProvider;
+import com.lethalskillzz.bakingapp.data.RecipeRepository;
 
 import javax.inject.Inject;
 
@@ -20,18 +19,15 @@ public class BasePresenter<V extends MvpView> implements MvpPresenter<V> {
 
     private static final String TAG = "BasePresenter";
 
-    private final DataManager mDataManager;
-    private final SchedulerProvider mSchedulerProvider;
+    private final RecipeRepository mRecipeRepository;
     private final CompositeDisposable mCompositeDisposable;
 
     private V mMvpView;
 
     @Inject
-    public BasePresenter(DataManager dataManager,
-                         SchedulerProvider schedulerProvider,
+    public BasePresenter(RecipeRepository recipeRepository,
                          CompositeDisposable compositeDisposable) {
-        this.mDataManager = dataManager;
-        this.mSchedulerProvider = schedulerProvider;
+        this.mRecipeRepository = recipeRepository;
         this.mCompositeDisposable = compositeDisposable;
     }
 
@@ -58,13 +54,10 @@ public class BasePresenter<V extends MvpView> implements MvpPresenter<V> {
         if (!isViewAttached()) throw new MvpViewNotAttachedException();
     }
 
-    public DataManager getDataManager() {
-        return mDataManager;
+    public RecipeRepository getRecipeRepository() {
+        return mRecipeRepository;
     }
 
-    public SchedulerProvider getSchedulerProvider() {
-        return mSchedulerProvider;
-    }
 
     public CompositeDisposable getCompositeDisposable() {
         return mCompositeDisposable;

@@ -1,47 +1,34 @@
 package com.lethalskillzz.bakingapp.data.model;
 
+import com.google.auto.value.AutoValue;
+import com.google.gson.Gson;
+import com.google.gson.TypeAdapter;
 
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
 
 /**
- * Created by ibrahimabdulkadir on 19/06/2017.
+ * Created by ibrahimabdulkadir on 23/06/2017.
  */
 
-public class Ingredient {
+@AutoValue
+public abstract class Ingredient {
+  public abstract float quantity();
+  public abstract String measure();
+  public abstract String ingredient();
 
-    @SerializedName("quantity")
-    @Expose
-    private Integer quantity;
-    @SerializedName("measure")
-    @Expose
-    private String measure;
-    @SerializedName("ingredient")
-    @Expose
-    private String ingredient;
+  public static Builder builder() {
+    return new AutoValue_Ingredient.Builder();
+  }
 
-    public Integer getQuantity() {
-        return quantity;
-    }
+  public static TypeAdapter<Ingredient> typeAdapter(Gson gson) {
+    return new AutoValue_Ingredient.GsonTypeAdapter(gson);
+  }
 
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
-    }
+  @AutoValue.Builder
+  public abstract static class Builder {
+    public abstract Builder quantity(float quantity);
+    public abstract Builder measure(String measure);
+    public abstract Builder ingredient(String ingredient);
 
-    public String getMeasure() {
-        return measure;
-    }
-
-    public void setMeasure(String measure) {
-        this.measure = measure;
-    }
-
-    public String getIngredient() {
-        return ingredient;
-    }
-
-    public void setIngredient(String ingredient) {
-        this.ingredient = ingredient;
-    }
-
+    public abstract Ingredient build();
+  }
 }

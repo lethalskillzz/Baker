@@ -2,10 +2,25 @@ package com.lethalskillzz.bakingapp.di.module;
 
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 
 import com.lethalskillzz.bakingapp.di.ActivityContext;
-import com.lethalskillzz.bakingapp.utils.rx.AppSchedulerProvider;
-import com.lethalskillzz.bakingapp.utils.rx.SchedulerProvider;
+import com.lethalskillzz.bakingapp.di.PerActivity;
+import com.lethalskillzz.bakingapp.presentation.ingredient.IngredientMvpPresenter;
+import com.lethalskillzz.bakingapp.presentation.ingredient.IngredientMvpView;
+import com.lethalskillzz.bakingapp.presentation.ingredient.IngredientPresenter;
+import com.lethalskillzz.bakingapp.presentation.recipe.RecipeMvpPresenter;
+import com.lethalskillzz.bakingapp.presentation.recipe.RecipeMvpView;
+import com.lethalskillzz.bakingapp.presentation.recipe.RecipePresenter;
+import com.lethalskillzz.bakingapp.presentation.recipelist.RecipeListMvpPresenter;
+import com.lethalskillzz.bakingapp.presentation.recipelist.RecipeListMvpView;
+import com.lethalskillzz.bakingapp.presentation.recipelist.RecipeListPresenter;
+import com.lethalskillzz.bakingapp.presentation.splash.SplashMvpPresenter;
+import com.lethalskillzz.bakingapp.presentation.splash.SplashMvpView;
+import com.lethalskillzz.bakingapp.presentation.splash.SplashPresenter;
+import com.lethalskillzz.bakingapp.presentation.step.StepMvpPresenter;
+import com.lethalskillzz.bakingapp.presentation.step.StepMvpView;
+import com.lethalskillzz.bakingapp.presentation.step.StepPresenter;
 
 import dagger.Module;
 import dagger.Provides;
@@ -40,9 +55,43 @@ public class ActivityModule {
         return new CompositeDisposable();
     }
 
+
     @Provides
-    SchedulerProvider provideSchedulerProvider() {
-        return new AppSchedulerProvider();
+    @PerActivity
+    SplashMvpPresenter<SplashMvpView> provideSplashPresenter(
+            SplashPresenter<SplashMvpView> presenter) {
+        return presenter;
     }
 
+    @Provides
+    @PerActivity
+    IngredientMvpPresenter<IngredientMvpView> provideIngredientPresenter(
+            IngredientPresenter<IngredientMvpView> presenter) {
+        return presenter;
+    }
+
+    @Provides
+    @PerActivity
+    RecipeMvpPresenter<RecipeMvpView> provideRecipePresenter(
+            RecipePresenter<RecipeMvpView> presenter) {
+        return presenter;
+    }
+
+    @Provides
+    RecipeListMvpPresenter<RecipeListMvpView> provideRecipeListPresenter(
+            RecipeListPresenter<RecipeListMvpView> presenter) {
+        return presenter;
+    }
+
+    @Provides
+    StepMvpPresenter<StepMvpView> provideStepPresenter(
+            StepPresenter<StepMvpView> presenter) {
+        return presenter;
+    }
+
+
+    @Provides
+    LinearLayoutManager provideLinearLayoutManager(AppCompatActivity activity) {
+        return new LinearLayoutManager(activity);
+    }
 }

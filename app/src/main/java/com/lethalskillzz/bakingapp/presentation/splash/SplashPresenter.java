@@ -2,9 +2,8 @@ package com.lethalskillzz.bakingapp.presentation.splash;
 
 import android.os.Handler;
 
-import com.lethalskillzz.bakingapp.data.DataManager;
+import com.lethalskillzz.bakingapp.data.RecipeRepository;
 import com.lethalskillzz.bakingapp.presentation.base.BasePresenter;
-import com.lethalskillzz.bakingapp.utils.rx.SchedulerProvider;
 
 import javax.inject.Inject;
 
@@ -23,10 +22,9 @@ public class SplashPresenter <V extends SplashMvpView> extends BasePresenter<V>
     private static int SPLASH_TIME_OUT = 3000;
 
     @Inject
-    public SplashPresenter(DataManager dataManager,
-                               SchedulerProvider schedulerProvider,
+    public SplashPresenter(RecipeRepository recipeRepository,
                                CompositeDisposable compositeDisposable) {
-        super(dataManager, schedulerProvider, compositeDisposable);
+        super(recipeRepository, compositeDisposable);
     }
 
 

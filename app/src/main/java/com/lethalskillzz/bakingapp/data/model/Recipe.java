@@ -1,84 +1,42 @@
 package com.lethalskillzz.bakingapp.data.model;
 
-
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+import com.google.auto.value.AutoValue;
+import com.google.gson.Gson;
+import com.google.gson.TypeAdapter;
 
 import java.util.List;
 
 
 /**
- * Created by ibrahimabdulkadir on 19/06/2017.
+ * Created by ibrahimabdulkadir on 23/06/2017.
  */
 
+@AutoValue
+public abstract class Recipe {
+  public abstract int id();
+  public abstract String name();
+  public abstract List<Ingredient> ingredients();
+  public abstract List<Step> steps();
+  public abstract int servings();
+  public abstract String image();
 
-public class Recipe {
+  public static Builder builder() {
+    return new AutoValue_Recipe.Builder();
+  }
 
-    @SerializedName("id")
-    @Expose
-    private Integer id;
-    @SerializedName("name")
-    @Expose
-    private String name;
-    @SerializedName("ingredients")
-    @Expose
-    private List<Ingredient> ingredients = null;
-    @SerializedName("steps")
-    @Expose
-    private List<Step> steps = null;
-    @SerializedName("servings")
-    @Expose
-    private Integer servings;
-    @SerializedName("image")
-    @Expose
-    private String image;
+  public static TypeAdapter<Recipe> typeAdapter(Gson gson) {
+    return new AutoValue_Recipe.GsonTypeAdapter(gson);
+  }
 
-    public Integer getId() {
-        return id;
-    }
+  @AutoValue.Builder
+  public abstract static class Builder {
+    public abstract Builder id(int id);
+    public abstract Builder name(String name);
+    public abstract Builder ingredients(List<Ingredient> ingredients);
+    public abstract Builder steps(List<Step> steps);
+    public abstract Builder servings(int servings);
+    public abstract Builder image(String image);
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public List<Ingredient> getIngredients() {
-        return ingredients;
-    }
-
-    public void setIngredients(List<Ingredient> ingredients) {
-        this.ingredients = ingredients;
-    }
-
-    public List<Step> getSteps() {
-        return steps;
-    }
-
-    public void setSteps(List<Step> steps) {
-        this.steps = steps;
-    }
-
-    public Integer getServings() {
-        return servings;
-    }
-
-    public void setServings(Integer servings) {
-        this.servings = servings;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
+    public abstract Recipe build();
+  }
 }

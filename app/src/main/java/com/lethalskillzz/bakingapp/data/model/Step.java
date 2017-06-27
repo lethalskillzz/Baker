@@ -1,69 +1,38 @@
 package com.lethalskillzz.bakingapp.data.model;
 
-
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+import com.google.auto.value.AutoValue;
+import com.google.gson.Gson;
+import com.google.gson.TypeAdapter;
 
 
 /**
- * Created by ibrahimabdulkadir on 19/06/2017.
+ * Created by ibrahimabdulkadir on 23/06/2017.
  */
 
-public class Step {
+@AutoValue
+public abstract class Step {
+  public abstract int id();
+  public abstract String shortDescription();
+  public abstract String description();
+  public abstract String videoURL();
+  public abstract String thumbnailURL();
 
-    @SerializedName("id")
-    @Expose
-    private Integer id;
-    @SerializedName("shortDescription")
-    @Expose
-    private String shortDescription;
-    @SerializedName("description")
-    @Expose
-    private String description;
-    @SerializedName("videoURL")
-    @Expose
-    private String videoURL;
-    @SerializedName("thumbnailURL")
-    @Expose
-    private String thumbnailURL;
+  public static Builder builder() {
+    return new AutoValue_Step.Builder();
+  }
 
-    public Integer getId() {
-        return id;
-    }
+  public static TypeAdapter<Step> typeAdapter(Gson gson) {
+    return new AutoValue_Step.GsonTypeAdapter(gson);
+  }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+  @AutoValue.Builder
+  public abstract static class Builder {
+    public abstract Builder id(int id);
+    public abstract Builder shortDescription(String shortDescription);
+    public abstract Builder description(String description);
+    public abstract Builder videoURL(String videoURL);
+    public abstract Builder thumbnailURL(String thumbnailURL);
 
-    public String getShortDescription() {
-        return shortDescription;
-    }
-
-    public void setShortDescription(String shortDescription) {
-        this.shortDescription = shortDescription;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getVideoURL() {
-        return videoURL;
-    }
-
-    public void setVideoURL(String videoURL) {
-        this.videoURL = videoURL;
-    }
-
-    public String getThumbnailURL() {
-        return thumbnailURL;
-    }
-
-    public void setThumbnailURL(String thumbnailURL) {
-        this.thumbnailURL = thumbnailURL;
-    }
+    public abstract Step build();
+  }
 }

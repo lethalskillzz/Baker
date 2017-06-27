@@ -24,7 +24,10 @@ ext {
     dagger2Version = '2.8'
     butterKnifeVersion = '8.5.1'
     retrofitVersion = "2.3.0"
-    okhttpLoggingInterceptorVersion = "3.8.0"
+    stethoVersion = "1.5.0"
+    okhttpVersion = "3.8.0"
+    autoValueVersion = "1.4"
+    autoValueGsonVersion = "0.4.6"
     gsonVersion = '2.8.0'
     sqlBriteVersion = "1.1.1"
     calligraphyVersion = '2.2.0'
@@ -71,7 +74,23 @@ ext {
             gsonConverter: "com.squareup.retrofit2:converter-gson:${retrofitVersion}",
     ]
 
-    okhttpLoggingInterceptorDependency = "com.squareup.okhttp3:logging-interceptor:${okhttpLoggingInterceptorVersion}"
+    okhttpDependencies = [
+            okhttp: "com.squareup.okhttp3:okhttp:${okhttpVersion}",
+            logging : "com.squareup.okhttp3:logging-interceptor:${okhttpVersion}",
+    ]
+
+    stethoDependencies = [
+            stetho       : "com.facebook.stetho:stetho:${stethoVersion}",
+            networkHelper: "com.facebook.stetho:stetho-okhttp3:${stethoVersion}",
+    ]
+
+    autoValueDependencies = [
+            autoValueApt     : "com.google.auto.value:auto-value:${autoValueVersion}",
+            autoValueProvided: "com.jakewharton.auto.value:auto-value-annotations:${autoValueVersion}",
+            gsonApt          : "com.ryanharter.auto.value:auto-value-gson:${autoValueGsonVersion}",
+            gsonProvided     : "com.ryanharter.auto.value:auto-value-gson:${autoValueGsonVersion}",
+    ]
+
     gsonDependency = "com.google.code.gson:gson:${gsonVersion}"
     sqlBriteDependency = "com.squareup.sqlbrite:sqlbrite:${sqlBriteVersion}"
     calligraphyDependency = "uk.co.chrisjenx:calligraphy:${calligraphyVersion}"

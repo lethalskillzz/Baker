@@ -64,7 +64,9 @@ dependencies {
     def dagger = rootProject.ext.daggerDependencies
     def butterKnife = rootProject.ext.butterKnifeDependencies
     def retrofit = rootProject.ext.retrofitDependencies
-    def okhttpLoggingInterceptor = rootProject.ext.okhttpLoggingInterceptorDependency
+    def okhttp = rootProject.ext.okhttpDependencies
+    def stetho = rootProject.ext.stethoDependencies
+    def autoValue = rootProject.ext.autoValueDependencies
     def gson = rootProject.ext.gsonDependency
     def sqlBrite = rootProject.ext.sqlBriteDependency
     def calligraphy = rootProject.ext.calligraphyDependency
@@ -112,8 +114,21 @@ dependencies {
     compile retrofit.rxJavaAdapter
     compile retrofit.gsonConverter
 
+    // okhttp
+    compile okhttp.okhttp
+    compile okhttp.logging
+
+    // Stetho
+    compile stetho.stetho
+    compile stetho.networkHelper
+
+    // AutoValue
+    annotationProcessor autoValue.autoValueApt
+    provided autoValue.autoValueProvided
+    annotationProcessor autoValue.gsonApt
+    provided autoValue.gsonProvided
+
     // Others
-    compile okhttpLoggingInterceptor
     compile gson
     compile sqlBrite
     compile calligraphy

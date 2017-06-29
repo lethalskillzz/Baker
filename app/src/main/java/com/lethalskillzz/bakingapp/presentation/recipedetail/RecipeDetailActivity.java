@@ -1,4 +1,4 @@
-package com.lethalskillzz.bakingapp.presentation.recipe;
+package com.lethalskillzz.bakingapp.presentation.recipedetail;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,14 +11,16 @@ import javax.inject.Inject;
 
 import butterknife.ButterKnife;
 
-public class RecipeActivity extends BaseActivity implements RecipeMvpView {
+public class RecipeDetailActivity extends BaseActivity implements RecipeDetailMvpView {
 
     @Inject
-    RecipeMvpPresenter<RecipeMvpView> mPresenter;
+    RecipeDetailMvpPresenter<RecipeDetailMvpView> mPresenter;
+
+
 
 
     public static Intent getStartIntent(Context context) {
-        Intent intent = new Intent(context, RecipeActivity.class);
+        Intent intent = new Intent(context, RecipeDetailActivity.class);
         return intent;
     }
 
@@ -26,13 +28,13 @@ public class RecipeActivity extends BaseActivity implements RecipeMvpView {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_recipe);
+        setContentView(R.layout.activity_recipe_detail);
 
         getActivityComponent().inject(this);
 
         setUnBinder(ButterKnife.bind(this));
 
-        mPresenter.onAttach(RecipeActivity.this);
+        mPresenter.onAttach(RecipeDetailActivity.this);
     }
 
     @Override

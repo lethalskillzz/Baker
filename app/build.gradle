@@ -71,7 +71,6 @@ dependencies {
     def sqlBrite = rootProject.ext.sqlBriteDependency
     def calligraphy = rootProject.ext.calligraphyDependency
     def timber = rootProject.ext.timberDependency
-    def debugDB = rootProject.ext.debugDBDependency
     def exoPlayer = rootProject.ext.exoPlayerDependency
 
 
@@ -88,10 +87,11 @@ dependencies {
 
     // Support Libraries
     compile supportLib.appCompat
+    compile supportLib.support
     compile supportLib.design
     compile supportLib.cardView
     compile supportLib.recyclerView
-
+    compile supportLib.constraintLayout
 
     // Rx
     compile rx.rxAndroid
@@ -133,7 +133,6 @@ dependencies {
     compile sqlBrite
     compile calligraphy
     compile timber
-    compile debugDB
     compile exoPlayer
 
 

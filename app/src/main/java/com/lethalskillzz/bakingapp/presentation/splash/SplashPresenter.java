@@ -1,12 +1,14 @@
 package com.lethalskillzz.bakingapp.presentation.splash;
 
-import android.os.Handler;
+import android.os.SystemClock;
 
 import com.lethalskillzz.bakingapp.data.RecipeRepository;
 import com.lethalskillzz.bakingapp.presentation.base.BasePresenter;
+import com.lethalskillzz.bakingapp.utils.rx.RxUtils;
 
 import javax.inject.Inject;
 
+import io.reactivex.Observable;
 import io.reactivex.disposables.CompositeDisposable;
 
 /**
@@ -33,16 +35,23 @@ public class SplashPresenter <V extends SplashMvpView> extends BasePresenter<V>
         super.onAttach(mvpView);
 
 
-            new Handler().postDelayed(new Runnable() {
-
-                //Showing splash screen with a timer
-                @Override
-                public void run() {
-                    getMvpView().openRecipeActivity();
-
-                }
-
-            }, SPLASH_TIME_OUT);
+        getCompositeDisposable().add(Observable.create(emitter -> {
+            SystemClock.sleep(SPLASH_TIME_OUT); // simulate delay
+            emitter.onNext(5);
+            emitter.onComplete();
+        }).compose(RxUtils.applySchedulers()).subscribe(integer -> {
+            getMvpView().openRecipeActivity();
+        }));
+//            new Handler().postDelayed(new Runnable() {
+//
+//                //Showing splash screen with a timer
+//                @Override
+//                public void run() {
+//                    getMvpView().openRecipeActivity();
+//
+//                }
+//
+//            }, SPLASH_TIME_OUT);
 
 
     }

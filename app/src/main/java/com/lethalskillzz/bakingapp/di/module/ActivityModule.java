@@ -9,9 +9,9 @@ import com.lethalskillzz.bakingapp.di.PerActivity;
 import com.lethalskillzz.bakingapp.presentation.ingredient.IngredientMvpPresenter;
 import com.lethalskillzz.bakingapp.presentation.ingredient.IngredientMvpView;
 import com.lethalskillzz.bakingapp.presentation.ingredient.IngredientPresenter;
-import com.lethalskillzz.bakingapp.presentation.recipe.RecipeMvpPresenter;
-import com.lethalskillzz.bakingapp.presentation.recipe.RecipeMvpView;
-import com.lethalskillzz.bakingapp.presentation.recipe.RecipePresenter;
+import com.lethalskillzz.bakingapp.presentation.recipedetail.RecipeDetailMvpPresenter;
+import com.lethalskillzz.bakingapp.presentation.recipedetail.RecipeDetailMvpView;
+import com.lethalskillzz.bakingapp.presentation.recipedetail.RecipeDetailPresenter;
 import com.lethalskillzz.bakingapp.presentation.recipelist.RecipeListMvpPresenter;
 import com.lethalskillzz.bakingapp.presentation.recipelist.RecipeListMvpView;
 import com.lethalskillzz.bakingapp.presentation.recipelist.RecipeListPresenter;
@@ -70,20 +70,25 @@ public class ActivityModule {
         return presenter;
     }
 
-    @Provides
-    @PerActivity
-    RecipeMvpPresenter<RecipeMvpView> provideRecipePresenter(
-            RecipePresenter<RecipeMvpView> presenter) {
-        return presenter;
-    }
 
     @Provides
+    @PerActivity
     RecipeListMvpPresenter<RecipeListMvpView> provideRecipeListPresenter(
             RecipeListPresenter<RecipeListMvpView> presenter) {
         return presenter;
     }
 
+
     @Provides
+    @PerActivity
+    RecipeDetailMvpPresenter<RecipeDetailMvpView> provideRecipeDetailPresenter(
+            RecipeDetailPresenter<RecipeDetailMvpView> presenter) {
+        return presenter;
+    }
+
+
+    @Provides
+    @PerActivity
     StepMvpPresenter<StepMvpView> provideStepPresenter(
             StepPresenter<StepMvpView> presenter) {
         return presenter;

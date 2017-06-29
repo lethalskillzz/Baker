@@ -32,7 +32,6 @@ ext {
     sqlBriteVersion = "1.1.1"
     calligraphyVersion = '2.2.0'
     timberVersion = '4.5.1'
-    debugDBVersion = '1.0.0'
     exoPlayerVersion = "r2.4.1"
 
 
@@ -42,10 +41,10 @@ ext {
     mockitoVersion = '2.7.1'
 
 
-
     // Library dependencies
     supportDependencies = [
             appCompat       : "com.android.support:appcompat-v7:${supportLibraryVersion}",
+            support         : "com.android.support:support-v4:${supportLibraryVersion}",
             design          : "com.android.support:design:${supportLibraryVersion}",
             cardView        : "com.android.support:cardview-v7:${supportLibraryVersion}",
             recyclerView    : "com.android.support:recyclerview-v7:${supportLibraryVersion}",
@@ -95,9 +94,7 @@ ext {
     sqlBriteDependency = "com.squareup.sqlbrite:sqlbrite:${sqlBriteVersion}"
     calligraphyDependency = "uk.co.chrisjenx:calligraphy:${calligraphyVersion}"
     timberDependency = "com.jakewharton.timber:timber:${timberVersion}"
-    debugDBDependency = "com.amitshekhar.android:debug-db:${debugDBVersion}"
     exoPlayerDependency = "com.google.android.exoplayer:exoplayer:${exoPlayerVersion}"
-
 
 
     // Test dependencies

@@ -1,4 +1,4 @@
-package com.lethalskillzz.bakingapp.presentation.recipe;
+package com.lethalskillzz.bakingapp.presentation.recipedetail;
 
 import com.lethalskillzz.bakingapp.presentation.base.MvpView;
 
@@ -6,6 +6,6 @@ import com.lethalskillzz.bakingapp.presentation.base.MvpView;
  * Created by ibrahimabdulkadir on 21/06/2017.
  */
 
-public interface RecipeMvpView extends MvpView {
+public interface RecipeDetailMvpView extends MvpView {
 
 }

@@ -6,7 +6,7 @@ import android.os.Bundle;
 
 import com.lethalskillzz.bakingapp.R;
 import com.lethalskillzz.bakingapp.presentation.base.BaseActivity;
-import com.lethalskillzz.bakingapp.presentation.recipe.RecipeActivity;
+import com.lethalskillzz.bakingapp.presentation.recipelist.RecipeListActivity;
 
 import javax.inject.Inject;
 
@@ -37,7 +37,7 @@ public class SplashActivity extends BaseActivity implements SplashMvpView {
 
     @Override
     public void openRecipeActivity() {
-        Intent intent = RecipeActivity.getStartIntent(SplashActivity.this);
+        Intent intent = RecipeListActivity.getStartIntent(SplashActivity.this);
         startActivity(intent);
         finish();
     }

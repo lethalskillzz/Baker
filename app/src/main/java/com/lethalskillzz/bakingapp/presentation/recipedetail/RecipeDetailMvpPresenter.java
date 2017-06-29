@@ -1,4 +1,4 @@
-package com.lethalskillzz.bakingapp.presentation.recipe;
+package com.lethalskillzz.bakingapp.presentation.recipedetail;
 
 import com.lethalskillzz.bakingapp.di.PerActivity;
 import com.lethalskillzz.bakingapp.presentation.base.MvpPresenter;
@@ -8,7 +8,7 @@ import com.lethalskillzz.bakingapp.presentation.base.MvpPresenter;
  */
 
 @PerActivity
-public interface RecipeMvpPresenter <V extends RecipeMvpView> extends MvpPresenter<V> {
+public interface RecipeDetailMvpPresenter<V extends RecipeDetailMvpView> extends MvpPresenter<V> {
 
 }
 

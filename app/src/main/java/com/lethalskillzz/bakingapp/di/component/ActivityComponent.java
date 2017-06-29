@@ -4,7 +4,7 @@ package com.lethalskillzz.bakingapp.di.component;
 import com.lethalskillzz.bakingapp.di.PerActivity;
 import com.lethalskillzz.bakingapp.di.module.ActivityModule;
 import com.lethalskillzz.bakingapp.presentation.ingredient.IngredientActivity;
-import com.lethalskillzz.bakingapp.presentation.recipe.RecipeActivity;
+import com.lethalskillzz.bakingapp.presentation.recipedetail.RecipeDetailActivity;
 import com.lethalskillzz.bakingapp.presentation.recipelist.RecipeListActivity;
 import com.lethalskillzz.bakingapp.presentation.splash.SplashActivity;
 import com.lethalskillzz.bakingapp.presentation.step.StepActivity;
@@ -23,7 +23,7 @@ public interface ActivityComponent {
 
     void inject(IngredientActivity activity);
 
-    void inject(RecipeActivity activity);
+    void inject(RecipeDetailActivity activity);
 
     void inject(RecipeListActivity activity);
 

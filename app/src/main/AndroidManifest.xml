@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.lethalskillzz.bakingapp">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name="com.lethalskillzz.bakingapp.App"
         android:allowBackup="true"
@@ -18,7 +20,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".presentation.ingredient.IngredientActivity" />
-        <activity android:name=".presentation.recipedetail.RecipeDetailDetailActivity" />
+        <activity android:name=".presentation.recipedetail.RecipeDetailActivity" />
         <activity android:name=".presentation.recipelist.RecipeListActivity" />
         <activity android:name=".presentation.step.StepActivity"/>
     </application>

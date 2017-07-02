@@ -3,6 +3,7 @@ package com.lethalskillzz.bakingapp.presentation.recipelist;
 import com.lethalskillzz.bakingapp.data.RecipeRepository;
 import com.lethalskillzz.bakingapp.data.idlingresource.RecipesIdlingResource;
 import com.lethalskillzz.bakingapp.presentation.base.BasePresenter;
+import com.lethalskillzz.bakingapp.utils.AppLogger;
 
 import javax.inject.Inject;
 
@@ -27,6 +28,8 @@ public class RecipeListPresenter  <V extends RecipeListMvpView> extends BasePres
     @Override
     public void loadRecipes(RecipesIdlingResource resource) {
 
+        AppLogger.e("haha");
+
         getCompositeDisposable().add(getRecipeRepository()
                 .getRecipes()
                 .doOnSubscribe(disposable -> {
@@ -36,9 +39,9 @@ public class RecipeListPresenter  <V extends RecipeListMvpView> extends BasePres
                 .subscribe(
                         //OnNext
                         recipeList -> {
-                            getMvpView().showRecipes(recipeList);
                             getRecipeRepository().markRepoAsSynced(true);
                             getMvpView().hideLoading();
+                            getMvpView().showRecipes(recipeList);
                             if (resource != null) resource.setIdleState(true);
                             //if (forcedSync) recipesView.showCompletedMessage();
                         },

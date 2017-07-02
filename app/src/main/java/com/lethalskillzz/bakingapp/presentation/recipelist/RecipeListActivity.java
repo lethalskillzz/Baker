@@ -10,6 +10,7 @@ import android.support.design.widget.CoordinatorLayout;
 import android.support.test.espresso.IdlingResource;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.widget.TextView;
@@ -25,6 +26,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import butterknife.BindInt;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -48,6 +50,9 @@ public class RecipeListActivity extends BaseActivity implements RecipeListMvpVie
     SwipeRefreshLayout mSwipeRefreshLayout;
     @BindView(R.id.refresh_text)
     TextView refreshText;
+
+    @BindInt(R.integer.grid_column_count)
+    int gridColumnCount;
 
     public static Intent getStartIntent(Context context) {
         Intent intent = new Intent(context, RecipeListActivity.class);
@@ -90,8 +95,10 @@ public class RecipeListActivity extends BaseActivity implements RecipeListMvpVie
             getSupportActionBar().setTitle(R.string.recipes_label);
         }
 
-        recipeListRecyclerView.addItemDecoration(new MarginDecoration(this));
+        GridLayoutManager layoutManager = new GridLayoutManager(this, gridColumnCount);
+        recipeListRecyclerView.setLayoutManager(layoutManager);
         recipeListRecyclerView.setHasFixedSize(true);
+        recipeListRecyclerView.addItemDecoration(new MarginDecoration(this));
         recipeListRecyclerView.setAdapter(recipeListAdapter);
 
         mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimaryLight);

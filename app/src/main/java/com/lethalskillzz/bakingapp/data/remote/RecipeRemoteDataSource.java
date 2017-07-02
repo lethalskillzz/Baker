@@ -4,6 +4,7 @@ import com.lethalskillzz.bakingapp.data.RecipeDataSource;
 import com.lethalskillzz.bakingapp.data.model.Ingredient;
 import com.lethalskillzz.bakingapp.data.model.Recipe;
 import com.lethalskillzz.bakingapp.data.model.Step;
+import com.lethalskillzz.bakingapp.utils.AppLogger;
 import com.lethalskillzz.bakingapp.utils.rx.RxUtils;
 
 import java.util.List;
@@ -11,7 +12,6 @@ import java.util.List;
 import javax.inject.Inject;
 
 import io.reactivex.Observable;
-import timber.log.Timber;
 
 /**
  * Created by ibrahimabdulkadir on 23/06/2017.
@@ -31,9 +31,9 @@ public class RecipeRemoteDataSource  implements RecipeDataSource {
         return service
                 .loadRecipesFromServer()
                 .compose(RxUtils.applySchedulers())
-                .doOnSubscribe(disposable -> Timber.d("Sync started..."))
-                .doOnError(throwable ->  Timber.d("Sync failed!"))
-                .doOnComplete(() -> Timber.d("Sync completed."));
+                .doOnSubscribe(disposable -> AppLogger.d("Sync started..."))
+                .doOnError(throwable ->  AppLogger.d("Sync failed!"))
+                .doOnComplete(() -> AppLogger.d("Sync completed."));
     }
 
     @Override

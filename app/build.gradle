@@ -72,6 +72,7 @@ dependencies {
     def calligraphy = rootProject.ext.calligraphyDependency
     def timber = rootProject.ext.timberDependency
     def exoPlayer = rootProject.ext.exoPlayerDependency
+    def picasso = rootProject.picassoDependency
 
 
     // Test definitions
@@ -127,6 +128,7 @@ dependencies {
     provided autoValue.autoValueProvided
     annotationProcessor autoValue.gsonApt
     provided autoValue.gsonProvided
+    compile autoValue.autoValueParcel
 
     // Others
     compile gson
@@ -134,6 +136,7 @@ dependencies {
     compile calligraphy
     compile timber
     compile exoPlayer
+    compile picasso
 
 
     // Local unit test

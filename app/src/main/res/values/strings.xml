@@ -12,6 +12,7 @@
 
 
     <!--App Message-->
+    <string name="error_no_internet">Couldn\'t connect. Please check your Internet connection!</string>
     <string name="api_retry_error">Please retry!</string>
     <string name="api_default_error">Something wrong happened!</string>
     <string name="some_error">Some Error Occurred!</string>

@@ -3,6 +3,7 @@ package com.lethalskillzz.bakingapp.presentation.recipelist;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.VisibleForTesting;
@@ -13,6 +14,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.TextView;
 
 import com.lethalskillzz.bakingapp.R;
@@ -30,6 +32,8 @@ import butterknife.BindInt;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.lethalskillzz.bakingapp.utils.AppConstants.RECIPE_KEY;
+
 public class RecipeListActivity extends BaseActivity implements RecipeListMvpView {
 
     @Inject
@@ -39,6 +43,8 @@ public class RecipeListActivity extends BaseActivity implements RecipeListMvpVie
     private RecipesIdlingResource idlingResource;
 
     private RecipeListAdapter recipeListAdapter;
+
+    private List<Recipe> recipes;
 
     @BindView(R.id.recipe_list_toolbar)
     Toolbar toolbar;
@@ -70,7 +76,9 @@ public class RecipeListActivity extends BaseActivity implements RecipeListMvpVie
 
         mPresenter.onAttach(RecipeListActivity.this);
 
-        recipeListAdapter = new RecipeListAdapter(
+        recipes = new ArrayList<>();
+
+        recipeListAdapter = new RecipeListAdapter(this,
                 new ArrayList<>(0),
                 recipeId -> mPresenter.openRecipeDetails(recipeId)
         );
@@ -78,7 +86,29 @@ public class RecipeListActivity extends BaseActivity implements RecipeListMvpVie
         recipeListAdapter.setHasStableIds(true);
 
         setUp();
+
+        if (savedInstanceState != null) {
+
+            if (savedInstanceState.containsKey(RECIPE_KEY)) {
+                recipes = savedInstanceState.getParcelableArrayList(RECIPE_KEY);
+                showRecipes(recipes);
+            }
+        } else {
+            refreshRecipe();
+        }
     }
+
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+
+        super.onSaveInstanceState(outState);
+
+        if (recipes != null) {
+            outState.putParcelableArrayList(RECIPE_KEY, (ArrayList<? extends Parcelable>) recipes);
+        }
+    }
+
 
     @Override
     protected void onDestroy() {
@@ -102,7 +132,7 @@ public class RecipeListActivity extends BaseActivity implements RecipeListMvpVie
         recipeListRecyclerView.setAdapter(recipeListAdapter);
 
         mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimaryLight);
-        mSwipeRefreshLayout.setOnRefreshListener(()->mPresenter.loadRecipes(idlingResource));
+        mSwipeRefreshLayout.setOnRefreshListener(this::refreshRecipe);
     }
 
 
@@ -114,17 +144,29 @@ public class RecipeListActivity extends BaseActivity implements RecipeListMvpVie
 
     @Override
     public void showRecipeDetails(int recipeId) {
-        //startActivity(RecipeDetailActivity.p(this, recipeId));
+        //startActivity(RecipeDetailActivity.(this, recipeId));
     }
 
     @Override
     public void showLoading() {
-
+        mSwipeRefreshLayout.post(() -> mSwipeRefreshLayout.setRefreshing(true));
     }
 
     @Override
     public void hideLoading() {
+        mSwipeRefreshLayout.setRefreshing(false);
+    }
 
+    void refreshRecipe() {
+        if (isNetworkConnected()) {
+
+            refreshText.setVisibility(View.GONE);
+            mPresenter.loadRecipes(idlingResource);
+
+        } else {
+            hideLoading();
+            showMessage(getString(R.string.error_no_internet));
+        }
     }
 
     @VisibleForTesting

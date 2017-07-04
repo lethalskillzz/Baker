@@ -22,7 +22,6 @@ public class ServiceFactory {
 
     public static <T> T createFrom(Class<T> serviceClass, String endpoint) {
 
-
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient client = new OkHttpClient.Builder()

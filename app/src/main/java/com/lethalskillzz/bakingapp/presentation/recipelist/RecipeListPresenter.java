@@ -3,7 +3,6 @@ package com.lethalskillzz.bakingapp.presentation.recipelist;
 import com.lethalskillzz.bakingapp.data.RecipeRepository;
 import com.lethalskillzz.bakingapp.data.idlingresource.RecipesIdlingResource;
 import com.lethalskillzz.bakingapp.presentation.base.BasePresenter;
-import com.lethalskillzz.bakingapp.utils.AppLogger;
 
 import javax.inject.Inject;
 
@@ -27,8 +26,6 @@ public class RecipeListPresenter  <V extends RecipeListMvpView> extends BasePres
 
     @Override
     public void loadRecipes(RecipesIdlingResource resource) {
-
-        AppLogger.e("haha");
 
         getCompositeDisposable().add(getRecipeRepository()
                 .getRecipes()

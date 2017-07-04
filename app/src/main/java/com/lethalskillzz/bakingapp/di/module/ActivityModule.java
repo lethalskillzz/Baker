@@ -99,4 +99,6 @@ public class ActivityModule {
     LinearLayoutManager provideLinearLayoutManager(AppCompatActivity activity) {
         return new LinearLayoutManager(activity);
     }
+
+
 }

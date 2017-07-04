@@ -1,14 +1,18 @@
 package com.lethalskillzz.bakingapp.presentation.recipelist;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.lethalskillzz.bakingapp.R;
 import com.lethalskillzz.bakingapp.data.model.Recipe;
+import com.lethalskillzz.bakingapp.utils.AppLogger;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 import java.util.Locale;
@@ -24,11 +28,13 @@ import butterknife.ButterKnife;
 public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.RecipeViewHolder> {
 
     private List<Recipe> recipeList;
-    final OnRecipeClickListener recipeClickListener;
+    private final OnRecipeClickListener recipeClickListener;
+    private Context mContext;
 
-    RecipeListAdapter(List<Recipe> recipes, OnRecipeClickListener listener) {
+    RecipeListAdapter(Context context, List<Recipe> recipes, OnRecipeClickListener listener) {
         setRecipes(recipes);
         recipeClickListener = listener;
+        mContext = context;
     }
 
     @Override
@@ -65,6 +71,10 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
 
     class RecipeViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
+
+        @BindView(R.id.item_recipe_list_image)
+        ImageView recipeImage;
+
         @BindView(R.id.item_recipe_list_name)
         TextView recipeName;
 
@@ -97,14 +107,52 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
 
         void bindTo(@NonNull Recipe recipe) {
 
-            currentId = recipe.id();
-
             String name = recipe.name();
+
+            switch (name) {
+
+                case "Nutella Pie": {
+
+                    Picasso.with(mContext).
+                            load(R.drawable.pie)
+                            .into(recipeImage);
+                }
+                break;
+
+                case "Brownies": {
+
+                    Picasso.with(mContext).
+                            load(R.drawable.brownie)
+                            .into(recipeImage);
+
+                }
+                break;
+
+                case "Yellow Cake": {
+
+                    Picasso.with(mContext).
+                            load(R.drawable.cake)
+                            .into(recipeImage);
+
+                }
+                break;
+
+                case "Cheesecake": {
+
+                    Picasso.with(mContext).
+                            load(R.drawable.cheese)
+                            .into(recipeImage);
+                }
+                break;
+
+            }
+
             recipeName.setText(name);
             //int servings = recipe.servings();
-            int ingredents = recipe.ingredients().size();
+            int ingredients = recipe.ingredients().size();
+            AppLogger.e(String.valueOf(ingredients));
             int steps = recipe.steps().size();
-            ingredientsCount.setText(String.format(Locale.US, ingredientsText, ingredents));
+            ingredientsCount.setText(String.format(Locale.US, ingredientsText, ingredients));
             stepsCount.setText(String.format(Locale.US, stepsText, steps));
         }
 

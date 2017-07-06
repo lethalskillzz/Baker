@@ -11,7 +11,7 @@ import com.lethalskillzz.bakingapp.presentation.base.MvpPresenter;
 @PerActivity
 public interface RecipeListMvpPresenter <V extends RecipeListMvpView> extends MvpPresenter<V> {
 
-    void loadRecipes(RecipesIdlingResource resource);
+    void loadRecipes(boolean forcedSync, RecipesIdlingResource resource);
 
     void openRecipeDetails(int recipeId);
 }

@@ -1,6 +1,8 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name">Baker</string>
     <string name="recipes_label">Recipes</string>
+    <string name="ingredients_label">Ingredients</string>
+    <string name="steps_label">Steps</string>
 
     <string name="splash_text">Udacity</string>
 

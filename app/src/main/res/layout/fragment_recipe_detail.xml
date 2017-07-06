@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/scrollViewMain">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusableInTouchMode="true">
+
+            <RelativeLayout
+                android:id="@+id/cv_recipe_detail_ingredient_heading_holder"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="10dp"
+                app:cardPreventCornerOverlap="false"
+                app:cardUseCompatPadding="true"
+                app:cardElevation="4dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent">
+
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/tv_recipe_detail_ingredient_heading"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/ingredients_label"
+                        android:textSize="@dimen/text_size_medium"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        android:background="@color/colorPrimaryDark"
+                        android:layout_gravity="center"
+                        android:gravity="center_horizontal"
+                        tools:text="Ingredients"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:padding="15dp"
+                        />
+
+                    <LinearLayout
+                        android:background="@color/colorPrimaryLight"
+                        android:padding="15dp"
+                        android:id="@+id/ll_ingredient_checklist"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_recipe_detail_ingredient_heading">
+
+                    </LinearLayout>
+
+                </android.support.constraint.ConstraintLayout>
+
+            </RelativeLayout>
+
+            <TextView
+                android:background="@color/colorPrimaryDark"
+                android:textColor="@color/white"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cv_recipe_detail_ingredient_heading_holder"
+                android:padding="15dp"
+                android:id="@+id/tv_recipe_detail_steps_heading"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="@string/steps_label"
+                android:textSize="@dimen/text_size_medium"
+                android:textStyle="bold"
+                android:layout_gravity="center"
+                tools:text="Steps"
+                />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recipe_detail_recycler_view"
+                android:layout_marginTop="20dp"
+                android:padding="8dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_recipe_detail_steps_heading"
+                />
+
+        </android.support.constraint.ConstraintLayout>
+
+    </ScrollView>
+
+</layout>

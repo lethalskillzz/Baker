@@ -138,6 +138,7 @@ public class RecipeListActivity extends BaseActivity implements RecipeListMvpVie
 
     @Override
     public void showRecipes(List<Recipe> recipes) {
+        this.recipes = recipes;
         recipeListAdapter.refreshRecipeList(recipes);
     }
 
@@ -161,9 +162,11 @@ public class RecipeListActivity extends BaseActivity implements RecipeListMvpVie
         if (isNetworkConnected()) {
 
             refreshText.setVisibility(View.GONE);
-            mPresenter.loadRecipes(idlingResource);
+            mPresenter.loadRecipes(true, idlingResource);
 
         } else {
+
+            mPresenter.loadRecipes(false, idlingResource);
             hideLoading();
             showMessage(getString(R.string.error_no_internet));
         }

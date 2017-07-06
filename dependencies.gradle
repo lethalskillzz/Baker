@@ -29,6 +29,7 @@ ext {
     autoValueVersion = '1.4'
     autoValueGsonVersion = '0.4.6'
     autoValueParcelVersion = '0.2.5'
+    autoValueParcelVersion = '0.2.5'
     gsonVersion = '2.8.0'
     sqlBriteVersion = '1.1.1'
     calligraphyVersion = '2.2.0'
@@ -90,7 +91,8 @@ ext {
             autoValueProvided: "com.jakewharton.auto.value:auto-value-annotations:${autoValueVersion}",
             gsonApt          : "com.ryanharter.auto.value:auto-value-gson:${autoValueGsonVersion}",
             gsonProvided     : "com.ryanharter.auto.value:auto-value-gson:${autoValueGsonVersion}",
-            autoValueParcel  : "com.ryanharter.auto.value:auto-value-parcel:${autoValueParcelVersion}",
+            parcelApt           : "com.ryanharter.auto.value:auto-value-parcel:${autoValueParcelVersion}",
+            parcelAdapter    : "com.ryanharter.auto.value:auto-value-parcel-adapter:${autoValueParcelVersion}",
     ]
 
     gsonDependency = "com.google.code.gson:gson:${gsonVersion}"

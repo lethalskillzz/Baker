@@ -107,6 +107,8 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
 
         void bindTo(@NonNull Recipe recipe) {
 
+            currentId = recipe.id();
+
             String name = recipe.name();
 
             switch (name) {
@@ -150,7 +152,7 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
             recipeName.setText(name);
             //int servings = recipe.servings();
             int ingredients = recipe.ingredients().size();
-            AppLogger.e(String.valueOf(ingredients));
+            AppLogger.e(String.valueOf(recipe.ingredients().size()));
             int steps = recipe.steps().size();
             ingredientsCount.setText(String.format(Locale.US, ingredientsText, ingredients));
             stepsCount.setText(String.format(Locale.US, stepsText, steps));

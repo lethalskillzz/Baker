@@ -5,6 +5,7 @@ import android.os.Parcelable;
 import com.google.auto.value.AutoValue;
 import com.google.gson.Gson;
 import com.google.gson.TypeAdapter;
+import com.ryanharter.auto.value.parcel.ParcelAdapter;
 
 import java.util.List;
 
@@ -17,7 +18,9 @@ import java.util.List;
 public abstract class Recipe implements Parcelable {
   public abstract int id();
   public abstract String name();
+  @ParcelAdapter(Ingredient.ListTypeAdapter.class)
   public abstract List<Ingredient> ingredients();
+  @ParcelAdapter(Step.ListTypeAdapter.class)
   public abstract List<Step> steps();
   public abstract int servings();
   public abstract String image();

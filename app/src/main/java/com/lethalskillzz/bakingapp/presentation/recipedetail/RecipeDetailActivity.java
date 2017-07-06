@@ -17,8 +17,6 @@ public class RecipeDetailActivity extends BaseActivity implements RecipeDetailMv
     RecipeDetailMvpPresenter<RecipeDetailMvpView> mPresenter;
 
 
-
-
     public static Intent getStartIntent(Context context) {
         Intent intent = new Intent(context, RecipeDetailActivity.class);
         return intent;

@@ -128,7 +128,8 @@ dependencies {
     provided autoValue.autoValueProvided
     annotationProcessor autoValue.gsonApt
     provided autoValue.gsonProvided
-    compile autoValue.autoValueParcel
+    annotationProcessor autoValue.parcelApt
+    compile autoValue.parcelAdapter
 
     // Others
     compile gson

@@ -16,8 +16,6 @@ import retrofit2.HttpException;
 public class RecipeListPresenter  <V extends RecipeListMvpView> extends BasePresenter<V>
         implements RecipeListMvpPresenter<V> {
 
-    private static final String TAG = "RecipeListPresenter";
-
     @Inject
     public RecipeListPresenter(RecipeRepository recipeRepository,
                                CompositeDisposable compositeDisposable) {
@@ -25,7 +23,11 @@ public class RecipeListPresenter  <V extends RecipeListMvpView> extends BasePres
     }
 
     @Override
-    public void loadRecipes(RecipesIdlingResource resource) {
+    public void loadRecipes(boolean forcedSync, RecipesIdlingResource resource) {
+
+        if (forcedSync) {
+            getRecipeRepository().markRepoAsSynced(false);
+        }
 
         getCompositeDisposable().add(getRecipeRepository()
                 .getRecipes()

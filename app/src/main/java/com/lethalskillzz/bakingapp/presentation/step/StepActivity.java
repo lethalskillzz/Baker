@@ -11,13 +11,19 @@ import javax.inject.Inject;
 
 import butterknife.ButterKnife;
 
+import static com.lethalskillzz.bakingapp.utils.AppConstants.RECIPE_ID;
+import static com.lethalskillzz.bakingapp.utils.AppConstants.STEP_ID;
+
 public class StepActivity extends BaseActivity implements StepMvpView {
 
     @Inject
     StepMvpPresenter<StepMvpView> mPresenter;
 
-    public static Intent getStartIntent(Context context) {
+
+    public static Intent getStartIntent(Context context, int recipeId, int stepId) {
         Intent intent = new Intent(context, StepActivity.class);
+        intent.putExtra(RECIPE_ID, recipeId);
+        intent.putExtra(STEP_ID, stepId);
         return intent;
     }
 

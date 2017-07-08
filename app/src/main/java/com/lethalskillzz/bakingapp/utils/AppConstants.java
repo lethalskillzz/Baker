@@ -10,6 +10,10 @@ public final class AppConstants {
     public static final String DB_NAME = "recipe.db";
 
     public static final String RECIPE_KEY = "recipe";
+    public static final String RECIPE_ID = "recipeId";
+    public static final String STEP_ID = "stepId";
+
+    public static final int DEFAULT_RECIPE_ID = 1;
 
     private AppConstants() {
         // This utility class is not publicly instantiable

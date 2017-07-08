@@ -11,7 +11,6 @@ import android.widget.TextView;
 
 import com.lethalskillzz.bakingapp.R;
 import com.lethalskillzz.bakingapp.data.model.Recipe;
-import com.lethalskillzz.bakingapp.utils.AppLogger;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -152,7 +151,6 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
             recipeName.setText(name);
             //int servings = recipe.servings();
             int ingredients = recipe.ingredients().size();
-            AppLogger.e(String.valueOf(recipe.ingredients().size()));
             int steps = recipe.steps().size();
             ingredientsCount.setText(String.format(Locale.US, ingredientsText, ingredients));
             stepsCount.setText(String.format(Locale.US, stepsText, steps));

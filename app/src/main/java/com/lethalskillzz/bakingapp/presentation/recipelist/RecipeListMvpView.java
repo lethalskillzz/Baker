@@ -11,7 +11,7 @@ import java.util.List;
 
 public interface RecipeListMvpView extends MvpView {
 
-    void showRecipes(List<Recipe> recipes);
+    void showRecipeList(List<Recipe> recipes);
 
-    void showRecipeDetails(int recipeId);
+    void showRecipeDetail(int recipeId);
 }

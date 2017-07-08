@@ -21,6 +21,7 @@ import com.lethalskillzz.bakingapp.R;
 import com.lethalskillzz.bakingapp.data.idlingresource.RecipesIdlingResource;
 import com.lethalskillzz.bakingapp.data.model.Recipe;
 import com.lethalskillzz.bakingapp.presentation.base.BaseActivity;
+import com.lethalskillzz.bakingapp.presentation.recipedetail.RecipeDetailActivity;
 import com.lethalskillzz.bakingapp.presentation.view.MarginDecoration;
 
 import java.util.ArrayList;
@@ -91,7 +92,7 @@ public class RecipeListActivity extends BaseActivity implements RecipeListMvpVie
 
             if (savedInstanceState.containsKey(RECIPE_KEY)) {
                 recipes = savedInstanceState.getParcelableArrayList(RECIPE_KEY);
-                showRecipes(recipes);
+                showRecipeList(recipes);
             }
         } else {
             refreshRecipe();
@@ -137,15 +138,15 @@ public class RecipeListActivity extends BaseActivity implements RecipeListMvpVie
 
 
     @Override
-    public void showRecipes(List<Recipe> recipes) {
+    public void showRecipeList(List<Recipe> recipes) {
         this.recipes = recipes;
         recipeListAdapter.refreshRecipeList(recipes);
     }
 
 
     @Override
-    public void showRecipeDetails(int recipeId) {
-        //startActivity(RecipeDetailActivity.(this, recipeId));
+    public void showRecipeDetail(int recipeId) {
+        startActivity(RecipeDetailActivity.getStartIntent(this, recipeId));
     }
 
     @Override

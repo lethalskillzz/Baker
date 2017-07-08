@@ -10,6 +10,8 @@
 
     <!-- Image -->
     <dimen name="image_size_small">15dp</dimen>
+    <dimen name="image_size_medium">75dp</dimen>
+    <dimen name="image_size_large">150dp</dimen>
 
     <!-- Spacing -->
     <dimen name="spacing_small">4dp</dimen>

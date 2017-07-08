@@ -40,7 +40,7 @@ public class RecipeListPresenter  <V extends RecipeListMvpView> extends BasePres
                         recipeList -> {
                             getRecipeRepository().markRepoAsSynced(true);
                             getMvpView().hideLoading();
-                            getMvpView().showRecipes(recipeList);
+                            getMvpView().showRecipeList(recipeList);
                             if (resource != null) resource.setIdleState(true);
                             //if (forcedSync) recipesView.showCompletedMessage();
                         },
@@ -60,7 +60,7 @@ public class RecipeListPresenter  <V extends RecipeListMvpView> extends BasePres
 
     @Override
     public void openRecipeDetails(int recipeId) {
-        getMvpView().showRecipeDetails(recipeId);
+        getMvpView().showRecipeDetail(recipeId);
     }
 
 }

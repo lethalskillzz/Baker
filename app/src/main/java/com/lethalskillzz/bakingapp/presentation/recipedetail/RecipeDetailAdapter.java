@@ -1,12 +1,24 @@
 package com.lethalskillzz.bakingapp.presentation.recipedetail;
 
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.lethalskillzz.bakingapp.R;
 import com.lethalskillzz.bakingapp.data.model.Step;
 import com.lethalskillzz.bakingapp.presentation.base.BaseViewHolder;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
+import java.util.Locale;
+
+import butterknife.BindString;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * Created by ibrahimabdulkadir on 06/07/2017.
@@ -31,33 +43,28 @@ public class RecipeDetailAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         holder.onBind(position);
     }
 
+
     @Override
     public BaseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.item_step_list, parent, false);
 
-        switch (viewType) {
-            case VIEW_TYPE_NORMAL:
-                return new ViewHolder(
-                        LayoutInflater.from(parent.getContext()).inflate(R.layout.item_repo_view, parent, false));
-            case VIEW_TYPE_EMPTY:
-            default:
-                return new EmptyViewHolder(
-                        LayoutInflater.from(parent.getContext()).inflate(R.layout.item_empty_view, parent, false));
-        }
+        return new ViewHolder(view);
     }
-
 
 
     @Override
     public int getItemCount() {
-        if (mOpenSourceResponseList != null && mOpenSourceResponseList.size() > 0) {
-            return mOpenSourceResponseList.size();
+        if (mStepList != null && mStepList.size() > 0) {
+            return mStepList.size();
         } else {
             return 1;
         }
     }
 
-    public void addItems(List<OpenSourceResponse.Repo> repoList) {
-        mOpenSourceResponseList.addAll(repoList);
+
+    public void refreshStepList(@NonNull List<Step> stepList) {
+        mStepList.addAll(stepList);
         notifyDataSetChanged();
     }
 
@@ -67,14 +74,22 @@ public class RecipeDetailAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
     public class ViewHolder extends BaseViewHolder {
 
-        @BindView(R.id.cover_image_view)
-        ImageView coverImageView;
+        @BindView(R.id.item_recipe_list_image)
+        ImageView thumbImageView;
 
-        @BindView(R.id.title_text_view)
-        TextView titleTextView;
+        @BindView(R.id.item_step_list_id)
+        TextView idTextView;
 
-        @BindView(R.id.content_text_view)
-        TextView contentTextView;
+        @BindView(R.id.item_step_list_desc)
+        TextView descTextView;
+
+
+        @BindString(R.string.step_id_text)
+        String idText;
+
+        @BindString(R.string.step_desc_text)
+        String descText;
+
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -82,69 +97,38 @@ public class RecipeDetailAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         }
 
         protected void clear() {
-            coverImageView.setImageDrawable(null);
-            titleTextView.setText("");
-            contentTextView.setText("");
+            thumbImageView.setImageDrawable(null);
+            idTextView.setText("");
+            descTextView.setText("");
         }
 
         public void onBind(int position) {
             super.onBind(position);
 
-            final OpenSourceResponse.Repo repo = mOpenSourceResponseList.get(position);
+            final Step step = mStepList.get(position);
+            int id = step.id();
+            String desc = step.description();
 
-            if (repo.getCoverImgUrl() != null) {
-                Glide.with(itemView.getContext())
-                        .load(repo.getCoverImgUrl())
-                        .asBitmap()
-                        .centerCrop()
-                        .into(coverImageView);
+            if(step.videoURL()!=null && !step.videoURL().matches("")) {
+                Picasso.with(itemView.getContext()).
+                        load(R.drawable.ic_videocam_white_24dp)
+                        .into(thumbImageView);
+            } else {
+                Picasso.with(itemView.getContext()).
+                        load(R.drawable.ic_videocam_off_black_24dp)
+                        .into(thumbImageView);
             }
 
-            if (repo.getTitle() != null) {
-                titleTextView.setText(repo.getTitle());
-            }
-
-            if (repo.getDescription() != null) {
-                contentTextView.setText(repo.getDescription());
-            }
+            idTextView.setText(String.format(Locale.US, idText, String.valueOf(id)));
+                descTextView.setText(String.format(Locale.US, descText, desc));
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (repo.getProjectUrl() != null) {
-                        Intent intent = new Intent();
-                        intent.setAction(Intent.ACTION_VIEW);
-                        intent.addCategory(Intent.CATEGORY_BROWSABLE);
-                        intent.setData(Uri.parse(repo.getProjectUrl()));
-                        itemView.getContext().startActivity(intent);
-                    }
+
                 }
             });
         }
     }
 
-    public class EmptyViewHolder extends BaseViewHolder {
-
-        @BindView(R.id.btn_retry)
-        Button retryButton;
-
-        @BindView(R.id.tv_message)
-        TextView messageTextView;
-
-        public EmptyViewHolder(View itemView) {
-            super(itemView);
-            ButterKnife.bind(this, itemView);
-        }
-
-        @Override
-        protected void clear() {
-
-        }
-
-        @OnClick(R.id.btn_retry)
-        void onRetryClick() {
-            if (mCallback != null)
-                mCallback.onRepoEmptyViewRetryClick();
-        }
-    }
 }

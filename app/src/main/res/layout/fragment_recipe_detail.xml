@@ -29,7 +29,7 @@
                     android:layout_height="match_parent">
 
                     <TextView
-                        android:id="@+id/tv_recipe_detail_ingredient_heading"
+                        android:id="@+id/recipe_detail_ingredient_heading"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:text="@string/ingredients_label"
@@ -55,7 +55,16 @@
                         android:orientation="vertical"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/tv_recipe_detail_ingredient_heading">
+                        app:layout_constraintTop_toBottomOf="@+id/recipe_detail_ingredient_heading">
+
+                        <TextView
+                            android:id="@+id/recipe_details_ingredients"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/text_size_medium"
+                            tools:text="Ingredients list:\nItem1\nItem2"/>
+
 
                     </LinearLayout>
 
@@ -70,7 +79,7 @@
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cv_recipe_detail_ingredient_heading_holder"
                 android:padding="15dp"
-                android:id="@+id/tv_recipe_detail_steps_heading"
+                android:id="@+id/recipe_detail_steps_heading"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
@@ -90,7 +99,7 @@
                 android:orientation="vertical"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_recipe_detail_steps_heading"
+                app:layout_constraintTop_toBottomOf="@+id/recipe_detail_steps_heading"
                 />
 
         </android.support.constraint.ConstraintLayout>

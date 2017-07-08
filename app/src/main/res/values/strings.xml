@@ -12,18 +12,25 @@
     <string name="recipe_steps_text"><xliff:g id="count">%d</xliff:g></string>
     <string name="recipe_servings_text"><xliff:g id="count">%d</xliff:g></string>
 
+    <string name="step_id_text"><xliff:g id="id">%d</xliff:g></string>
+    <string name="step_desc_text"><xliff:g id="desc">%d</xliff:g></string>
+
 
     <!--App Message-->
     <string name="error_no_internet">Couldn\'t connect. Please check your Internet connection!</string>
-    <string name="api_retry_error">Please retry!</string>
-    <string name="api_default_error">Something wrong happened!</string>
-    <string name="some_error">Some Error Occurred!</string>
-    <string name="connection_error">Internet connection lost!</string>
+    <string name="error_api_retry">Please retry!</string>
+    <string name="error_default">Something wrong happened!</string>
 
 
     <!--empty state-->
     <string name="empty_screen">We do not have anything\nhere right now.</string>
     <string name="pull_refresh">Pull to refresh</string>
 
+
+    <!-- Recipe Details -->
+    <string name="recipe_details_ingredient_line" translatable="false">
+    <xliff:g id="bullet">\u2022</xliff:g> <xliff:g id="name">%s</xliff:g>
+    (<xliff:g id="quantity">%s</xliff:g> <xliff:g id="measure">%s</xliff:g>)
+  </string>
 
 </resources>

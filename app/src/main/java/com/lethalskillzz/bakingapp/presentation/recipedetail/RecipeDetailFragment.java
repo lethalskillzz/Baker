@@ -8,21 +8,35 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.lethalskillzz.bakingapp.R;
+import com.lethalskillzz.bakingapp.data.model.Ingredient;
+import com.lethalskillzz.bakingapp.data.model.Step;
 import com.lethalskillzz.bakingapp.di.component.ActivityComponent;
 import com.lethalskillzz.bakingapp.presentation.base.BaseFragment;
+import com.lethalskillzz.bakingapp.presentation.step.StepActivity;
+import com.lethalskillzz.bakingapp.presentation.step.StepFragment;
+import com.lethalskillzz.bakingapp.utils.FragmentUtils;
+import com.lethalskillzz.bakingapp.utils.StringUtils;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
+import butterknife.BindBool;
+import butterknife.BindString;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static com.lethalskillzz.bakingapp.utils.AppConstants.RECIPE_ID;
 
 /**
  * Created by ibrahimabdulkadir on 06/07/2017.
  */
 
-public class RecipeDetailFragment extends BaseFragment implements RecipeDetailMvpView {
+public class RecipeDetailFragment extends BaseFragment implements
+        RecipeDetailMvpView, RecipeDetailAdapter.Callback {
 
     @Inject
     RecipeDetailMvpPresenter<RecipeDetailMvpView> mPresenter;
@@ -33,15 +47,35 @@ public class RecipeDetailFragment extends BaseFragment implements RecipeDetailMv
     @Inject
     LinearLayoutManager mLayoutManager;
 
-    @BindView(R.id.repo_recycler_view)
-    RecyclerView mRecyclerView;
+    @BindView(R.id.recipe_details_ingredients)
+    TextView recipeDetailsIngredients;
+    @BindView(R.id.recipe_detail_recycler_view)
+    RecyclerView recipeDetailsRecyclerView;
 
-    public static RecipeDetailFragment newInstance() {
+
+
+    @BindBool(R.bool.master_detail_mode)
+    boolean masterDetaileMode;
+    @BindString(R.string.error_default)
+    String errorMessage;
+
+    private int recipeId;
+
+
+    public static RecipeDetailFragment newInstance(int recipeId) {
         Bundle args = new Bundle();
+        args.putInt(RECIPE_ID, recipeId);
         RecipeDetailFragment fragment = new RecipeDetailFragment();
         fragment.setArguments(args);
         return fragment;
     }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        recipeId = getArguments().getInt(RECIPE_ID);
+    }
+
 
     @Nullable
     @Override
@@ -62,11 +96,13 @@ public class RecipeDetailFragment extends BaseFragment implements RecipeDetailMv
     @Override
     protected void setUp(View view) {
         mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        mRecyclerView.setLayoutManager(mLayoutManager);
-        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        mRecyclerView.setAdapter(mOpenSourceAdapter);
+        recipeDetailsRecyclerView.setLayoutManager(mLayoutManager);
+        recipeDetailsRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        recipeDetailsRecyclerView.setAdapter(mRecipeDetailAdapter);
 
-        mPresenter.onViewPrepared();
+        mPresenter.loadRecipeNameFromRepo();
+        mPresenter.loadIngredientsFromRepo();
+        mPresenter.loadStepsFromRepo();
     }
 
     @Override
@@ -74,15 +110,68 @@ public class RecipeDetailFragment extends BaseFragment implements RecipeDetailMv
 
     }
 
-    @Override
-    public void updateRepo(List<OpenSourceResponse.Repo> repoList) {
-        mOpenSourceAdapter.addItems(repoList);
-    }
 
     @Override
     public void onDestroyView() {
         mPresenter.onDetach();
         super.onDestroyView();
+    }
+
+    @Override
+    public void showIngredientsList(List<Ingredient> ingredients) {
+
+        StringBuilder sb = new StringBuilder();
+
+        for (Ingredient ingredient : ingredients) {
+
+            String name = ingredient.ingredient();
+            float quantity = ingredient.quantity();
+            String measure = ingredient.measure();
+
+            sb.append("\n");
+            sb.append(StringUtils.formatIngredient(getContext(), name, quantity, measure));
+        }
+
+    }
+
+    @Override
+    public void showStepsList(List<Step> steps) {
+        mRecipeDetailAdapter.refreshStepList(steps);
+    }
+
+
+    @Override
+    public void showRecipeNameInActivityTitle(String recipeName) {
+        getActivity().setTitle(recipeName);
+    }
+
+    @Override
+    public void showStepDetails(int stepId) {
+
+        if (masterDetaileMode) {
+            mPresenter.fetchStepData(stepId);
+        } else {
+            startActivity(StepActivity.getStartIntent(getContext(), recipeId, stepId));
+        }
+
+    }
+
+    @Override
+    public void showErrorMessage() {
+        // User should not see this
+        onError(errorMessage);
+    }
+
+    @Override
+    public void refreshStepContainerFragment(String desc, String videoUrl, String imageUrl) {
+
+        StepFragment fragment =
+                StepFragment.newInstance(desc, videoUrl, imageUrl);
+
+        FragmentUtils.replaceFragmentIn(
+                getChildFragmentManager(),
+                fragment,
+                R.id.detail_fragment_container);
     }
 
 }

@@ -12,9 +12,11 @@ import com.lethalskillzz.bakingapp.presentation.base.BaseFragment;
 
 import javax.inject.Inject;
 
+import butterknife.BindString;
 import butterknife.ButterKnife;
 
 import static com.lethalskillzz.bakingapp.utils.AppConstants.RECIPE_ID;
+import static com.lethalskillzz.bakingapp.utils.AppConstants.STEP_ID;
 
 /**
  * Created by ibrahimabdulkadir on 06/07/2017.
@@ -25,10 +27,17 @@ public class StepFragment extends BaseFragment implements StepMvpView{
     @Inject
     StepMvpPresenter<StepMvpView> mPresenter;
 
+    @BindString(R.string.error_default)
+    String errorMessage;
 
-    public static StepFragment newInstance(int recipeId) {
+
+    private int recipeId;
+    private int stepId;
+
+    public static StepFragment newInstance(int recipeId, int stepId) {
         Bundle args = new Bundle();
         args.putInt(RECIPE_ID, recipeId);
+        args.putInt(STEP_ID, stepId);
         StepFragment fragment = new StepFragment();
         fragment.setArguments(args);
         return fragment;
@@ -38,6 +47,7 @@ public class StepFragment extends BaseFragment implements StepMvpView{
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         recipeId = getArguments().getInt(RECIPE_ID);
+        stepId = getArguments().getInt(STEP_ID);
     }
 
 
@@ -60,5 +70,19 @@ public class StepFragment extends BaseFragment implements StepMvpView{
     protected void setUp(View view) {
 
     }
+
+    @Override
+    public void showErrorMessage() {
+        // User should not see this
+        onError(errorMessage);
+    }
+
+
+    @Override
+    public void refreshStepContainerFragment(String desc, String videoUrl, String imageUrl) {
+
+
+    }
+
 
 }

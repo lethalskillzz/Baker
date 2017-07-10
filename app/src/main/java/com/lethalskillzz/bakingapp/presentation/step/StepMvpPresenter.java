@@ -10,4 +10,5 @@ import com.lethalskillzz.bakingapp.presentation.base.MvpPresenter;
 @PerActivity
 public interface StepMvpPresenter <V extends StepMvpView> extends MvpPresenter<V> {
 
+    void fetchStepData(int recipeId, int stepId);
 }

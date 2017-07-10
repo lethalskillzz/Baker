@@ -2,13 +2,10 @@ package com.lethalskillzz.bakingapp.presentation.recipedetail;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.lethalskillzz.bakingapp.R;
 import com.lethalskillzz.bakingapp.data.model.Ingredient;
@@ -16,8 +13,6 @@ import com.lethalskillzz.bakingapp.data.model.Step;
 import com.lethalskillzz.bakingapp.di.component.ActivityComponent;
 import com.lethalskillzz.bakingapp.presentation.base.BaseFragment;
 import com.lethalskillzz.bakingapp.presentation.step.StepActivity;
-import com.lethalskillzz.bakingapp.presentation.step.StepFragment;
-import com.lethalskillzz.bakingapp.utils.FragmentUtils;
 import com.lethalskillzz.bakingapp.utils.StringUtils;
 
 import java.util.List;
@@ -26,7 +21,6 @@ import javax.inject.Inject;
 
 import butterknife.BindBool;
 import butterknife.BindString;
-import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import static com.lethalskillzz.bakingapp.utils.AppConstants.RECIPE_ID;
@@ -47,15 +41,14 @@ public class RecipeDetailFragment extends BaseFragment implements
     @Inject
     LinearLayoutManager mLayoutManager;
 
-    @BindView(R.id.recipe_details_ingredients)
-    TextView recipeDetailsIngredients;
-    @BindView(R.id.recipe_detail_recycler_view)
-    RecyclerView recipeDetailsRecyclerView;
-
+//    @BindView(R.id.recipe_details_ingredients)
+//    TextView recipeDetailsIngredients;
+//    @BindView(R.id.recipe_detail_recycler_view)
+//    RecyclerView recipeDetailsRecyclerView;
 
 
     @BindBool(R.bool.master_detail_mode)
-    boolean masterDetaileMode;
+    boolean masterDetailMode;
     @BindString(R.string.error_default)
     String errorMessage;
 
@@ -93,16 +86,17 @@ public class RecipeDetailFragment extends BaseFragment implements
         return view;
     }
 
+
     @Override
     protected void setUp(View view) {
         mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        recipeDetailsRecyclerView.setLayoutManager(mLayoutManager);
-        recipeDetailsRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        recipeDetailsRecyclerView.setAdapter(mRecipeDetailAdapter);
+//        recipeDetailsRecyclerView.setLayoutManager(mLayoutManager);
+//        recipeDetailsRecyclerView.setItemAnimator(new DefaultItemAnimator());
+//        recipeDetailsRecyclerView.setAdapter(mRecipeDetailAdapter);
 
-        mPresenter.loadRecipeNameFromRepo();
-        mPresenter.loadIngredientsFromRepo();
-        mPresenter.loadStepsFromRepo();
+        mPresenter.loadRecipeNameFromRepo(recipeId);
+        mPresenter.loadIngredientsFromRepo(recipeId);
+        mPresenter.loadStepsFromRepo(recipeId);
     }
 
     @Override
@@ -146,10 +140,16 @@ public class RecipeDetailFragment extends BaseFragment implements
     }
 
     @Override
-    public void showStepDetails(int stepId) {
+    public void showStepDetails(int recipeId, int stepId) {
 
-        if (masterDetaileMode) {
-            mPresenter.fetchStepData(stepId);
+        if (masterDetailMode) {
+//            StepFragment fragment =
+//                    StepFragment.newInstance(recipeId, stepId);
+//
+//            FragmentUtils.replaceFragmentIn(
+//                    getChildFragmentManager(),
+//                    fragment,
+//                    R.id.detail_fragment_container);
         } else {
             startActivity(StepActivity.getStartIntent(getContext(), recipeId, stepId));
         }
@@ -162,16 +162,5 @@ public class RecipeDetailFragment extends BaseFragment implements
         onError(errorMessage);
     }
 
-    @Override
-    public void refreshStepContainerFragment(String desc, String videoUrl, String imageUrl) {
-
-        StepFragment fragment =
-                StepFragment.newInstance(desc, videoUrl, imageUrl);
-
-        FragmentUtils.replaceFragmentIn(
-                getChildFragmentManager(),
-                fragment,
-                R.id.detail_fragment_container);
-    }
 
 }

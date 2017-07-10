@@ -37,8 +37,7 @@ public class SplashActivity extends BaseActivity implements SplashMvpView {
 
     @Override
     public void openRecipeActivity() {
-        Intent intent = RecipeListActivity.getStartIntent(SplashActivity.this);
-        startActivity(intent);
+        startActivity(RecipeListActivity.getStartIntent(SplashActivity.this));
         finish();
     }
 

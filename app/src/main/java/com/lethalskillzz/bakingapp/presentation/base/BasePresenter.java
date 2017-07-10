@@ -76,7 +76,7 @@ public class BasePresenter<V extends MvpView> implements MvpPresenter<V> {
     public void handleApiError(HttpException e) {
 
         if (e == null || e.getMessage() == null) {
-            getMvpView().onError(R.string.api_default_error);
+            getMvpView().onError(R.string.error_api_retry);
             return;
         }
 
@@ -87,7 +87,7 @@ public class BasePresenter<V extends MvpView> implements MvpPresenter<V> {
             ApiError apiError = gson.fromJson(e.getMessage(), ApiError.class);
 
             if (apiError == null || apiError.getMessage() == null) {
-                getMvpView().onError(R.string.api_default_error);
+                getMvpView().onError(R.string.error_api_retry);
                 return;
             }
 
@@ -101,7 +101,7 @@ public class BasePresenter<V extends MvpView> implements MvpPresenter<V> {
             }
         } catch (JsonSyntaxException | NullPointerException nullEx) {
             Log.e(TAG, "handleApiError", nullEx);
-            getMvpView().onError(R.string.api_default_error);
+            getMvpView().onError(R.string.error_api_retry);
         }
     }
 

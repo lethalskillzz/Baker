@@ -5,6 +5,7 @@ import com.lethalskillzz.bakingapp.presentation.base.BasePresenter;
 
 import javax.inject.Inject;
 
+import io.reactivex.Observable;
 import io.reactivex.disposables.CompositeDisposable;
 
 /**
@@ -21,4 +22,25 @@ public class StepPresenter  <V extends StepMvpView> extends BasePresenter<V>
                                CompositeDisposable compositeDisposable) {
         super(recipeRepository, compositeDisposable);
     }
+
+
+
+    @Override
+    public void fetchStepData(int recipeId, int stepId) {
+
+        getCompositeDisposable().add(getRecipeRepository()
+                .getRecipeSteps(recipeId)
+                .flatMap(Observable::fromIterable)
+                .filter(step -> step.id() == stepId)
+                .subscribe(
+                        // OnNext
+                        step ->
+                                getMvpView().refreshStepContainerFragment(
+                                        step.description(),
+                                        step.videoURL(),
+                                        step.thumbnailURL()),
+                        // OnError
+                        throwable -> getMvpView().showErrorMessage()));
+    }
+
 }

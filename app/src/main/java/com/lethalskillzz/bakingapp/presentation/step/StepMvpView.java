@@ -7,4 +7,8 @@ import com.lethalskillzz.bakingapp.presentation.base.MvpView;
  */
 
 public interface StepMvpView extends MvpView {
+
+    void showErrorMessage();
+
+    void refreshStepContainerFragment(String desc, String videoUrl, String imageUrl);
 }

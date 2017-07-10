@@ -42,17 +42,6 @@ public class SplashPresenter <V extends SplashMvpView> extends BasePresenter<V>
         }).compose(RxUtils.applySchedulers()).subscribe(integer -> {
             getMvpView().openRecipeActivity();
         }));
-//            new Handler().postDelayed(new Runnable() {
-//
-//                //Showing splash screen with a timer
-//                @Override
-//                public void run() {
-//                    getMvpView().openRecipeActivity();
-//
-//                }
-//
-//            }, SPLASH_TIME_OUT);
-
 
     }
 

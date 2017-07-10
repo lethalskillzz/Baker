@@ -7,17 +7,12 @@ import android.os.Bundle;
 import com.lethalskillzz.bakingapp.R;
 import com.lethalskillzz.bakingapp.presentation.base.BaseActivity;
 
-import javax.inject.Inject;
-
 import butterknife.ButterKnife;
 
 import static com.lethalskillzz.bakingapp.utils.AppConstants.RECIPE_ID;
 import static com.lethalskillzz.bakingapp.utils.AppConstants.STEP_ID;
 
-public class StepActivity extends BaseActivity implements StepMvpView {
-
-    @Inject
-    StepMvpPresenter<StepMvpView> mPresenter;
+public class StepActivity extends BaseActivity {
 
 
     public static Intent getStartIntent(Context context, int recipeId, int stepId) {
@@ -36,14 +31,8 @@ public class StepActivity extends BaseActivity implements StepMvpView {
 
         setUnBinder(ButterKnife.bind(this));
 
-        mPresenter.onAttach(StepActivity.this);
     }
 
-    @Override
-    protected void onDestroy() {
-        mPresenter.onDetach();
-        super.onDestroy();
-    }
 
     @Override
     protected void setUp() {

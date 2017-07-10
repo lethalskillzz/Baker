@@ -20,7 +20,7 @@ public interface RecipeDetailMvpView extends MvpView {
 
     void showRecipeNameInActivityTitle(String recipeName);
 
-    void showStepDetails(int stepId);
+    void showStepDetails(int recipeId, int stepId);
 
-    void refreshStepContainerFragment(String desc, String videoUrl, String imageUrl);
+
 }

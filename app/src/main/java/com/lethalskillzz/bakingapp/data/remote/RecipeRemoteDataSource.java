@@ -32,7 +32,7 @@ public class RecipeRemoteDataSource  implements RecipeDataSource {
                 .loadRecipesFromServer()
                 .compose(RxUtils.applySchedulers())
                 .doOnSubscribe(disposable -> AppLogger.d("Sync started..."))
-                .doOnError(throwable ->  AppLogger.d("Sync failed!"))
+                .doOnError(throwable -> AppLogger.d("Sync failed!"))
                 .doOnComplete(() -> AppLogger.d("Sync completed."));
     }
 

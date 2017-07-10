@@ -27,15 +27,25 @@
         android:id="@+id/recipe_detail_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:baselineAligned="false"
+        android:divider="?android:dividerHorizontal"
+        android:showDividers="middle"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         >
 
         <FrameLayout
             android:id="@+id/master_fragment_container"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
         </FrameLayout>
 
+        <FrameLayout
+            android:id="@+id/detail_fragment_container"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.6">
+        </FrameLayout>
 
     </LinearLayout>
 

@@ -10,14 +10,14 @@ import com.lethalskillzz.bakingapp.presentation.base.MvpPresenter;
 @PerActivity
 public interface RecipeDetailMvpPresenter<V extends RecipeDetailMvpView> extends MvpPresenter<V> {
 
-    void loadRecipeNameFromRepo();
+    void loadRecipeNameFromRepo(int recipeId);
 
-    void loadIngredientsFromRepo();
+    void loadIngredientsFromRepo(int recipeId);
 
-    void loadStepsFromRepo();
+    void loadStepsFromRepo(int recipeId);
 
-    void openStepDetails(int stepId);
+    void openStepDetails(int recipeId, int stepId);
 
-    void fetchStepData(int stepId);
+
 }
 

@@ -14,7 +14,7 @@
             android:focusableInTouchMode="true">
 
             <RelativeLayout
-                android:id="@+id/cv_recipe_detail_ingredient_heading_holder"
+                android:id="@+id/recipe_detail_ingredient_heading_holder"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="10dp"
@@ -77,7 +77,7 @@
                 android:textColor="@color/white"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cv_recipe_detail_ingredient_heading_holder"
+                app:layout_constraintTop_toBottomOf="@+id/recipe_detail_ingredient_heading_holder"
                 android:padding="15dp"
                 android:id="@+id/recipe_detail_steps_heading"
                 android:layout_width="0dp"

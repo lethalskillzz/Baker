@@ -99,7 +99,7 @@ public abstract class BaseActivity extends AppCompatActivity
         if (message != null) {
             showSnackBar(message);
         } else {
-            showSnackBar(getString(R.string.some_error));
+            showSnackBar(getString(R.string.error_default));
         }
     }
 
@@ -113,7 +113,7 @@ public abstract class BaseActivity extends AppCompatActivity
         if (message != null) {
             Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(this, getString(R.string.some_error), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.error_default), Toast.LENGTH_SHORT).show();
         }
     }
 

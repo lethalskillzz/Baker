@@ -22,10 +22,16 @@ public class RecipeDetailPresenter<V extends RecipeDetailMvpView> extends BasePr
                                  CompositeDisposable compositeDisposable) {
         super(recipeRepository, compositeDisposable);
     }
-    
 
     @Override
-    public void loadRecipeNameFromRepo() {
+    public void onAttach(V mvpView) {
+        super.onAttach(mvpView);
+
+
+    }
+
+        @Override
+    public void loadRecipeNameFromRepo(int recipeId) {
         getCompositeDisposable().add(getRecipeRepository()
                 .getRecipes()
                 .flatMap(Observable::fromIterable)
@@ -34,12 +40,12 @@ public class RecipeDetailPresenter<V extends RecipeDetailMvpView> extends BasePr
                         // OnNext
                         recipe -> getMvpView().showRecipeNameInActivityTitle(recipe.name()),
                         // OnError
-                        throwable -> getMvpView().onError()));
+                        throwable -> getMvpView().showErrorMessage()));
 
     }
 
     @Override
-    public void loadIngredientsFromRepo() {
+    public void loadIngredientsFromRepo(int recipeId) {
 
         getCompositeDisposable().add(getRecipeRepository()
                 .getRecipeIngredients(recipeId)
@@ -52,7 +58,7 @@ public class RecipeDetailPresenter<V extends RecipeDetailMvpView> extends BasePr
     }
 
     @Override
-    public void loadStepsFromRepo() {
+    public void loadStepsFromRepo(int recipeId) {
 
         getCompositeDisposable().add(getRecipeRepository()
                 .getRecipeSteps(recipeId)
@@ -65,26 +71,8 @@ public class RecipeDetailPresenter<V extends RecipeDetailMvpView> extends BasePr
     }
 
     @Override
-    public void openStepDetails(int stepId) {
-        getMvpView().showStepDetails(stepId);
-    }
-
-    @Override
-    public void fetchStepData(int stepId) {
-
-        getCompositeDisposable().add(getRecipeRepository()
-                .getRecipeSteps(recipeId)
-                .flatMap(Observable::fromIterable)
-                .filter(step -> step.id() == stepId)
-                .subscribe(
-                        // OnNext
-                        step ->
-                                getMvpView().refreshStepContainerFragment(
-                                        step.description(),
-                                        step.videoURL(),
-                                        step.thumbnailURL()),
-                        // OnError
-                        throwable -> getMvpView().showErrorMessage()));
+    public void openStepDetails(int recipeId, int stepId) {
+        getMvpView().showStepDetails(recipeId, stepId);
     }
 
 }

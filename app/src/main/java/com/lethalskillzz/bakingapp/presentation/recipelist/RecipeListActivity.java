@@ -35,15 +35,17 @@ import butterknife.ButterKnife;
 
 import static com.lethalskillzz.bakingapp.utils.AppConstants.RECIPE_KEY;
 
-public class RecipeListActivity extends BaseActivity implements RecipeListMvpView {
+public class RecipeListActivity extends BaseActivity implements
+        RecipeListMvpView, RecipeListAdapter.Callback {
 
     @Inject
     RecipeListMvpPresenter<RecipeListMvpView> mPresenter;
 
+    @Inject
+    RecipeListAdapter mRecipeListAdapter;
+
     @Nullable
     private RecipesIdlingResource idlingResource;
-
-    private RecipeListAdapter recipeListAdapter;
 
     private List<Recipe> recipes;
 
@@ -79,12 +81,8 @@ public class RecipeListActivity extends BaseActivity implements RecipeListMvpVie
 
         recipes = new ArrayList<>();
 
-        recipeListAdapter = new RecipeListAdapter(this,
-                new ArrayList<>(0),
-                recipeId -> mPresenter.openRecipeDetails(recipeId)
-        );
-
-        recipeListAdapter.setHasStableIds(true);
+        mRecipeListAdapter.setCallback(this);
+        mRecipeListAdapter.setHasStableIds(true);
 
         setUp();
 
@@ -130,7 +128,7 @@ public class RecipeListActivity extends BaseActivity implements RecipeListMvpVie
         recipeListRecyclerView.setLayoutManager(layoutManager);
         recipeListRecyclerView.setHasFixedSize(true);
         recipeListRecyclerView.addItemDecoration(new MarginDecoration(this));
-        recipeListRecyclerView.setAdapter(recipeListAdapter);
+        recipeListRecyclerView.setAdapter(mRecipeListAdapter);
 
         mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimaryLight);
         mSwipeRefreshLayout.setOnRefreshListener(this::refreshRecipe);
@@ -140,7 +138,7 @@ public class RecipeListActivity extends BaseActivity implements RecipeListMvpVie
     @Override
     public void showRecipeList(List<Recipe> recipes) {
         this.recipes = recipes;
-        recipeListAdapter.refreshRecipeList(recipes);
+        mRecipeListAdapter.refreshRecipeList(recipes);
     }
 
 
@@ -180,5 +178,10 @@ public class RecipeListActivity extends BaseActivity implements RecipeListMvpVie
             idlingResource = new RecipesIdlingResource();
         }
         return idlingResource;
+    }
+
+    @Override
+    public void onRecipeListClick(int recipeId) {
+        mPresenter.openRecipeDetails(recipeId);
     }
 }

@@ -4,7 +4,6 @@ import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 
-import com.lethalskillzz.bakingapp.data.model.Step;
 import com.lethalskillzz.bakingapp.di.ActivityContext;
 import com.lethalskillzz.bakingapp.di.PerActivity;
 import com.lethalskillzz.bakingapp.presentation.ingredient.IngredientMvpPresenter;
@@ -14,6 +13,7 @@ import com.lethalskillzz.bakingapp.presentation.recipedetail.RecipeDetailAdapter
 import com.lethalskillzz.bakingapp.presentation.recipedetail.RecipeDetailMvpPresenter;
 import com.lethalskillzz.bakingapp.presentation.recipedetail.RecipeDetailMvpView;
 import com.lethalskillzz.bakingapp.presentation.recipedetail.RecipeDetailPresenter;
+import com.lethalskillzz.bakingapp.presentation.recipelist.RecipeListAdapter;
 import com.lethalskillzz.bakingapp.presentation.recipelist.RecipeListMvpPresenter;
 import com.lethalskillzz.bakingapp.presentation.recipelist.RecipeListMvpView;
 import com.lethalskillzz.bakingapp.presentation.recipelist.RecipeListPresenter;
@@ -100,8 +100,14 @@ public class ActivityModule {
 
 
     @Provides
+    RecipeListAdapter provideRecipeListAdapter() {
+        return new RecipeListAdapter(new ArrayList<>(0));
+    }
+
+
+    @Provides
     RecipeDetailAdapter provideRecipeDetailAdapter() {
-        return new RecipeDetailAdapter(new ArrayList<Step>());
+        return new RecipeDetailAdapter(new ArrayList<>(0));
     }
 
 

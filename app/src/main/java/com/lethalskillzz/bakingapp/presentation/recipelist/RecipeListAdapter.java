@@ -1,6 +1,5 @@
 package com.lethalskillzz.bakingapp.presentation.recipelist;
 
-import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -27,13 +26,14 @@ import butterknife.ButterKnife;
 public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.RecipeViewHolder> {
 
     private List<Recipe> recipeList;
-    private final OnRecipeClickListener recipeClickListener;
-    private Context mContext;
+    private Callback mCallback;
 
-    RecipeListAdapter(Context context, List<Recipe> recipes, OnRecipeClickListener listener) {
+    public RecipeListAdapter(List<Recipe> recipes) {
         setRecipes(recipes);
-        recipeClickListener = listener;
-        mContext = context;
+    }
+
+    public void setCallback(Callback callback) {
+        mCallback = callback;
     }
 
     @Override
@@ -69,7 +69,6 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
     }
 
     class RecipeViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-
 
         @BindView(R.id.item_recipe_list_image)
         ImageView recipeImage;
@@ -114,7 +113,7 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
 
                 case "Nutella Pie": {
 
-                    Picasso.with(mContext).
+                    Picasso.with(itemView.getContext()).
                             load(R.drawable.pie)
                             .into(recipeImage);
                 }
@@ -122,7 +121,7 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
 
                 case "Brownies": {
 
-                    Picasso.with(mContext).
+                    Picasso.with(itemView.getContext()).
                             load(R.drawable.brownie)
                             .into(recipeImage);
 
@@ -131,7 +130,7 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
 
                 case "Yellow Cake": {
 
-                    Picasso.with(mContext).
+                    Picasso.with(itemView.getContext()).
                             load(R.drawable.cake)
                             .into(recipeImage);
 
@@ -140,7 +139,7 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
 
                 case "Cheesecake": {
 
-                    Picasso.with(mContext).
+                    Picasso.with(itemView.getContext()).
                             load(R.drawable.cheese)
                             .into(recipeImage);
                 }
@@ -158,13 +157,14 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
 
         @Override
         public void onClick(View v) {
-            recipeClickListener.recipeClicked(currentId);
+            if (mCallback != null)
+                mCallback.onRecipeListClick(currentId);
         }
     }
 
-    interface OnRecipeClickListener {
 
-        void recipeClicked(int recipeId);
+    public interface Callback {
+        void onRecipeListClick(int recipeId);
     }
 
 }

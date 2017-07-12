@@ -31,7 +31,7 @@ public class RecipeDetailAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     private List<Step> mStepList;
 
     public RecipeDetailAdapter(List<Step> stepList) {
-        mStepList = stepList;
+        setSteps(stepList);
     }
 
     public void setCallback(Callback callback) {
@@ -55,26 +55,31 @@ public class RecipeDetailAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
     @Override
     public int getItemCount() {
-        if (mStepList != null && mStepList.size() > 0) {
-            return mStepList.size();
-        } else {
-            return 1;
-        }
+        return mStepList.size();
     }
 
+//    @Override
+//    public int getItemCount() {
+//        if (mStepList != null && mStepList.size() > 0) {
+//            return mStepList.size();
+//        } else {
+//            return 1;
+//        }
+//    }
+
+    private void setSteps(@NonNull List<Step> steps) {
+        mStepList = steps;
+    }
 
     public void refreshStepList(@NonNull List<Step> stepList) {
+        setSteps(stepList);
         mStepList.addAll(stepList);
         notifyDataSetChanged();
     }
 
-    public interface Callback {
-        void onRepoEmptyViewRetryClick();
-    }
+    class ViewHolder extends BaseViewHolder {
 
-    public class ViewHolder extends BaseViewHolder {
-
-        @BindView(R.id.item_recipe_list_image)
+        @BindView(R.id.item_step_list_image)
         ImageView thumbImageView;
 
         @BindView(R.id.item_step_list_id)
@@ -107,7 +112,7 @@ public class RecipeDetailAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
             final Step step = mStepList.get(position);
             int id = step.id();
-            String desc = step.description();
+            String desc = step.shortDescription();
 
             if(step.videoURL()!=null && !step.videoURL().matches("")) {
                 Picasso.with(itemView.getContext()).
@@ -115,20 +120,27 @@ public class RecipeDetailAdapter extends RecyclerView.Adapter<BaseViewHolder> {
                         .into(thumbImageView);
             } else {
                 Picasso.with(itemView.getContext()).
-                        load(R.drawable.ic_videocam_off_black_24dp)
+                        load(R.drawable.ic_videocam_off_white_24dp)
                         .into(thumbImageView);
             }
 
-            idTextView.setText(String.format(Locale.US, idText, String.valueOf(id)));
-                descTextView.setText(String.format(Locale.US, descText, desc));
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+            if(id == 0)
+                idTextView.setText("  ");
+            else
+                idTextView.setText(String.format(Locale.US, idText, id));
 
-                }
+            descTextView.setText(desc);
+
+            itemView.setOnClickListener(v -> {
+
             });
         }
     }
+
+    public interface Callback {
+        void onRecipeStepClick();
+    }
+
 
 }

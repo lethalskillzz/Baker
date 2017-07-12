@@ -39,9 +39,8 @@ public class SplashPresenter <V extends SplashMvpView> extends BasePresenter<V>
             SystemClock.sleep(SPLASH_TIME_OUT); // simulate delay
             emitter.onNext(5);
             emitter.onComplete();
-        }).compose(RxUtils.applySchedulers()).subscribe(integer -> {
-            getMvpView().openRecipeActivity();
-        }));
+        }).compose(RxUtils.applySchedulers()).subscribe(integer ->
+                getMvpView().openRecipeActivity()));
 
     }
 

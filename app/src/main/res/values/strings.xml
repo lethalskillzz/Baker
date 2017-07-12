@@ -4,7 +4,7 @@
     <string name="ingredients_label">Ingredients</string>
     <string name="steps_label">Steps</string>
 
-    <string name="splash_text">Udacity</string>
+    <string name="splash_text">Ultimate Baking App</string>
 
 
     <!--Placeholder-->
@@ -12,7 +12,7 @@
     <string name="recipe_steps_text"><xliff:g id="count">%d</xliff:g></string>
     <string name="recipe_servings_text"><xliff:g id="count">%d</xliff:g></string>
 
-    <string name="step_id_text"><xliff:g id="id">%d</xliff:g></string>
+    <string name="step_id_text"><xliff:g id="id">%d</xliff:g>. </string>
     <string name="step_desc_text"><xliff:g id="desc">%d</xliff:g></string>
 
 

@@ -13,7 +13,10 @@ public final class AppConstants {
     public static final String RECIPE_ID = "recipeId";
     public static final String STEP_ID = "stepId";
 
-    public static final int DEFAULT_RECIPE_ID = 1;
+    public static final String STEP_DATA = "stepData";
+
+    public static final int DEFAULT_ID = 1;
+
 
     private AppConstants() {
         // This utility class is not publicly instantiable

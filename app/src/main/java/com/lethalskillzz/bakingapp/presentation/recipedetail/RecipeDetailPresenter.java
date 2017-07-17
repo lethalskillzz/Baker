@@ -72,7 +72,16 @@ public class RecipeDetailPresenter<V extends RecipeDetailMvpView> extends BasePr
 
     @Override
     public void openStepDetails(int recipeId, int stepId) {
-        getMvpView().showStepDetails(recipeId, stepId);
-    }
 
+        getCompositeDisposable().add(getRecipeRepository()
+                .getRecipeSteps(recipeId)
+                .flatMap(Observable::fromIterable)
+                .filter(step -> step.id() == stepId)
+                .subscribe(
+                        // OnNext
+                        step -> getMvpView().showStepDetails(stepId, step),
+                        // OnError
+                        throwable -> getMvpView().showErrorMessage()));
+
+    }
 }

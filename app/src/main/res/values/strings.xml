@@ -15,6 +15,8 @@
     <string name="step_id_text"><xliff:g id="id">%d</xliff:g>. </string>
     <string name="step_desc_text"><xliff:g id="desc">%d</xliff:g></string>
 
+    <string name="step_number_format">Step %1$d</string>
+
 
     <!--App Message-->
     <string name="error_no_internet">Couldn\'t connect. Please check your Internet connection!</string>

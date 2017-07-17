@@ -17,6 +17,7 @@ import com.lethalskillzz.bakingapp.di.component.ActivityComponent;
 import com.lethalskillzz.bakingapp.presentation.base.BaseFragment;
 import com.lethalskillzz.bakingapp.presentation.step.StepActivity;
 import com.lethalskillzz.bakingapp.presentation.step.StepFragment;
+import com.lethalskillzz.bakingapp.utils.AppLogger;
 import com.lethalskillzz.bakingapp.utils.FragmentUtils;
 import com.lethalskillzz.bakingapp.utils.StringUtils;
 
@@ -59,6 +60,7 @@ public class RecipeDetailFragment extends BaseFragment implements
     String errorMessage;
 
     private int recipeId;
+    private List<Step> mSteps;
 
 
     public static RecipeDetailFragment newInstance(int recipeId) {
@@ -110,10 +112,13 @@ public class RecipeDetailFragment extends BaseFragment implements
     }
 
     @Override
-    public void onRecipeStepClick() {
+    public void onRecipeStepClick(int stepId) {
 
+        AppLogger.e(String.valueOf(stepId));
+        AppLogger.e(String.valueOf(recipeId));
+
+       mPresenter.openStepDetails(recipeId, stepId);
     }
-
 
     @Override
     public void onDestroyView() {
@@ -142,6 +147,7 @@ public class RecipeDetailFragment extends BaseFragment implements
 
     @Override
     public void showStepsList(List<Step> steps) {
+        mSteps = steps;
         mRecipeDetailAdapter.refreshStepList(steps);
     }
 
@@ -152,18 +158,18 @@ public class RecipeDetailFragment extends BaseFragment implements
     }
 
     @Override
-    public void showStepDetails(int recipeId, int stepId) {
+    public void showStepDetails(int stepId, Step step) {
 
         if (masterDetailMode) {
             StepFragment fragment =
-                    StepFragment.newInstance(recipeId, stepId);
+                    StepFragment.newInstance(step);
 
             FragmentUtils.replaceFragmentIn(
                     getChildFragmentManager(),
                     fragment,
                     R.id.detail_fragment_container);
         } else {
-            startActivity(StepActivity.getStartIntent(getContext(), recipeId, stepId));
+            startActivity(StepActivity.getStartIntent(getContext(), stepId, mSteps));
         }
 
     }

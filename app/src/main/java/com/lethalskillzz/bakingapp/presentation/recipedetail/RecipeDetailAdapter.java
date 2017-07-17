@@ -11,7 +11,6 @@ import android.widget.TextView;
 import com.lethalskillzz.bakingapp.R;
 import com.lethalskillzz.bakingapp.data.model.Step;
 import com.lethalskillzz.bakingapp.presentation.base.BaseViewHolder;
-import com.squareup.picasso.Picasso;
 
 import java.util.List;
 import java.util.Locale;
@@ -77,7 +76,7 @@ public class RecipeDetailAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         notifyDataSetChanged();
     }
 
-    class ViewHolder extends BaseViewHolder {
+    class ViewHolder extends BaseViewHolder{
 
         @BindView(R.id.item_step_list_image)
         ImageView thumbImageView;
@@ -96,6 +95,7 @@ public class RecipeDetailAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         String descText;
 
 
+
         public ViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
@@ -111,35 +111,32 @@ public class RecipeDetailAdapter extends RecyclerView.Adapter<BaseViewHolder> {
             super.onBind(position);
 
             final Step step = mStepList.get(position);
-            int id = step.id();
+            int stepId = step.id();
             String desc = step.shortDescription();
 
             if(step.videoURL()!=null && !step.videoURL().matches("")) {
-                Picasso.with(itemView.getContext()).
-                        load(R.drawable.ic_videocam_white_24dp)
-                        .into(thumbImageView);
+                thumbImageView.setImageResource(R.drawable.ic_video);
             } else {
-                Picasso.with(itemView.getContext()).
-                        load(R.drawable.ic_videocam_off_white_24dp)
-                        .into(thumbImageView);
+                thumbImageView.setImageResource(R.drawable.ic_no_video);
             }
 
-
-            if(id == 0)
+            if(stepId == 0)
                 idTextView.setText("  ");
             else
-                idTextView.setText(String.format(Locale.US, idText, id));
+                idTextView.setText(String.format(Locale.US, idText, stepId));
 
             descTextView.setText(desc);
 
             itemView.setOnClickListener(v -> {
-
+                if (mCallback != null)
+                    mCallback.onRecipeStepClick(stepId);
             });
         }
+
     }
 
     public interface Callback {
-        void onRecipeStepClick();
+        void onRecipeStepClick(int stepId);
     }
 
 

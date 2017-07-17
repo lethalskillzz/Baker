@@ -124,7 +124,6 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
                     Picasso.with(itemView.getContext()).
                             load(R.drawable.brownie)
                             .into(recipeImage);
-
                 }
                 break;
 
@@ -133,7 +132,6 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
                     Picasso.with(itemView.getContext()).
                             load(R.drawable.cake)
                             .into(recipeImage);
-
                 }
                 break;
 

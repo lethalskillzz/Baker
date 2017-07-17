@@ -17,7 +17,7 @@ import io.reactivex.Observable;
  * Created by ibrahimabdulkadir on 23/06/2017.
  */
 
-public class RecipeRemoteDataSource  implements RecipeDataSource {
+public class RecipeRemoteDataSource implements RecipeDataSource {
 
     private final RecipeService service;
 

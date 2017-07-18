@@ -23,9 +23,9 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static com.lethalskillzz.bakingapp.utils.AppConstants.DEFAULT_ID;
-import static com.lethalskillzz.bakingapp.utils.AppConstants.STEP_DATA;
-import static com.lethalskillzz.bakingapp.utils.AppConstants.STEP_ID;
+import static com.lethalskillzz.bakingapp.utils.AppConstants.BUNDLE_DEFAULT_ID;
+import static com.lethalskillzz.bakingapp.utils.AppConstants.BUNDLE_STEP_DATA;
+import static com.lethalskillzz.bakingapp.utils.AppConstants.BUNDLE_STEP_ID;
 
 public class StepActivity extends BaseActivity {
 
@@ -43,8 +43,8 @@ public class StepActivity extends BaseActivity {
 
     public static Intent getStartIntent(Context context, int stepId, List<Step> steps) {
         Intent intent = new Intent(context, StepActivity.class);
-        intent.putExtra(STEP_ID, stepId);
-        intent.putParcelableArrayListExtra(STEP_DATA, (ArrayList<? extends Parcelable>) steps);
+        intent.putExtra(BUNDLE_STEP_ID, stepId);
+        intent.putParcelableArrayListExtra(BUNDLE_STEP_DATA, (ArrayList<? extends Parcelable>) steps);
         return intent;
     }
 
@@ -57,8 +57,8 @@ public class StepActivity extends BaseActivity {
 
         setUnBinder(ButterKnife.bind(this));
 
-        mStepId = getIntent().getIntExtra(STEP_ID, DEFAULT_ID);
-        mSteps = getIntent().getExtras().getParcelableArrayList(STEP_DATA);
+        mStepId = getIntent().getIntExtra(BUNDLE_STEP_ID, BUNDLE_DEFAULT_ID);
+        mSteps = getIntent().getExtras().getParcelableArrayList(BUNDLE_STEP_DATA);
 
 
         setUp();

@@ -28,4 +28,5 @@ public interface ApplicationComponent {
     Application application();
 
     RecipeRepository getRecipeRepository();
+
 }

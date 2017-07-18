@@ -9,13 +9,18 @@ public final class AppConstants {
 
     public static final String DB_NAME = "recipe.db";
 
-    public static final String RECIPE_KEY = "recipe";
-    public static final String RECIPE_ID = "recipeId";
-    public static final String STEP_ID = "stepId";
+    public static final String BUNDLE_RECIPE_KEY = "bundleRecipe";
+    public static final String BUNDLE_RECIPE_ID = "bundleRecipeId";
+    public static final String BUNDLE_STEP_ID = "bundleStepId";
+    public static final String BUNDLE_RECIPE_NAME = "bundleStepName";
 
-    public static final String STEP_DATA = "stepData";
 
-    public static final int DEFAULT_ID = 1;
+    public static final String BUNDLE_STEP_DATA = "bundleStepData";
+
+    public static final int BUNDLE_DEFAULT_ID = 1;
+
+    public static final String RECIPE_WIDGET_ACTION_UPDATE = "recipeWidgetActionUpdate";
+
 
 
     private AppConstants() {

@@ -14,4 +14,5 @@ public interface RecipeListMvpPresenter <V extends RecipeListMvpView> extends Mv
     void loadRecipes(boolean forcedSync, RecipesIdlingResource resource);
 
     void openRecipeDetails(int recipeId);
+
 }

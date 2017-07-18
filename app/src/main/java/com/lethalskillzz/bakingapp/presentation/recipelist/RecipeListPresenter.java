@@ -42,11 +42,12 @@ public class RecipeListPresenter  <V extends RecipeListMvpView> extends BasePres
                             getMvpView().hideLoading();
                             getMvpView().showRecipeList(recipeList);
                             if (resource != null) resource.setIdleState(true);
-                            //if (forcedSync) recipesView.showCompletedMessage();
+                            //if (forcedSync) getMvpView().showCompletedMessage();
                         },
                         // OnError
                         throwable -> {
                             getMvpView().hideLoading();
+                            getMvpView().refreshRecipe(false);
 
                             if (throwable instanceof HttpException) {
                                 HttpException e = (HttpException) throwable;

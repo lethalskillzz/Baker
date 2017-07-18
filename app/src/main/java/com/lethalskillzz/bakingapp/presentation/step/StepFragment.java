@@ -42,7 +42,7 @@ import butterknife.BindString;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static com.lethalskillzz.bakingapp.utils.AppConstants.STEP_DATA;
+import static com.lethalskillzz.bakingapp.utils.AppConstants.BUNDLE_STEP_DATA;
 
 /**
  * Created by ibrahimabdulkadir on 06/07/2017.
@@ -75,7 +75,7 @@ public class StepFragment extends BaseFragment implements StepMvpView, ExoPlayer
 
     public static StepFragment newInstance(Step step) {
         Bundle args = new Bundle();
-        args.putParcelable(STEP_DATA, step);
+        args.putParcelable(BUNDLE_STEP_DATA, step);
         StepFragment fragment = new StepFragment();
         fragment.setArguments(args);
         return fragment;
@@ -86,8 +86,8 @@ public class StepFragment extends BaseFragment implements StepMvpView, ExoPlayer
         super.onCreate(savedInstanceState);
 
         Bundle arguments = getArguments();
-        if ((arguments != null) && (arguments.containsKey(STEP_DATA))) {
-            mStep = arguments.getParcelable(STEP_DATA);
+        if ((arguments != null) && (arguments.containsKey(BUNDLE_STEP_DATA))) {
+            mStep = arguments.getParcelable(BUNDLE_STEP_DATA);
         }
     }
 

@@ -14,4 +14,6 @@ public interface RecipeListMvpView extends MvpView {
     void showRecipeList(List<Recipe> recipes);
 
     void showRecipeDetail(int recipeId);
+
+    void refreshRecipe(boolean isRemote);
 }

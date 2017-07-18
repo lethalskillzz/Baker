@@ -74,8 +74,6 @@ public class ApplicationModule {
                 .build();
     }
 
-
-
     @Singleton
     @Provides
     @Local
@@ -123,4 +121,5 @@ public class ApplicationModule {
     PreferencesHelper providePreferencesHelper(@ApplicationContext Context context) {
         return new PreferencesHelper(context);
     }
+
 }

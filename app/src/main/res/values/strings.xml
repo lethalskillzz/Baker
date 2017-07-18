@@ -35,4 +35,6 @@
     (<xliff:g id="quantity">%s</xliff:g> <xliff:g id="measure">%s</xliff:g>)
   </string>
 
+    <string name="appwidget_text">Recipe Shopping List</string>
+
 </resources>

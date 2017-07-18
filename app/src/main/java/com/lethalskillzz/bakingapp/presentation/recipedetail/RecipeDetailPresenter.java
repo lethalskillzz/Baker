@@ -30,7 +30,7 @@ public class RecipeDetailPresenter<V extends RecipeDetailMvpView> extends BasePr
 
     }
 
-        @Override
+    @Override
     public void loadRecipeNameFromRepo(int recipeId) {
         getCompositeDisposable().add(getRecipeRepository()
                 .getRecipes()

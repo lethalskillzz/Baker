@@ -23,6 +23,7 @@ import com.lethalskillzz.bakingapp.data.model.Recipe;
 import com.lethalskillzz.bakingapp.presentation.base.BaseActivity;
 import com.lethalskillzz.bakingapp.presentation.recipedetail.RecipeDetailActivity;
 import com.lethalskillzz.bakingapp.presentation.view.MarginDecoration;
+import com.lethalskillzz.bakingapp.presentation.widget.RecipeWidgetService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +34,7 @@ import butterknife.BindInt;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static com.lethalskillzz.bakingapp.utils.AppConstants.RECIPE_KEY;
+import static com.lethalskillzz.bakingapp.utils.AppConstants.BUNDLE_RECIPE_KEY;
 
 public class RecipeListActivity extends BaseActivity implements
         RecipeListMvpView, RecipeListAdapter.Callback {
@@ -88,12 +89,12 @@ public class RecipeListActivity extends BaseActivity implements
 
         if (savedInstanceState != null) {
 
-            if (savedInstanceState.containsKey(RECIPE_KEY)) {
-                recipes = savedInstanceState.getParcelableArrayList(RECIPE_KEY);
+            if (savedInstanceState.containsKey(BUNDLE_RECIPE_KEY)) {
+                recipes = savedInstanceState.getParcelableArrayList(BUNDLE_RECIPE_KEY);
                 showRecipeList(recipes);
             }
         } else {
-            refreshRecipe();
+            refreshRecipe(true);
         }
     }
 
@@ -104,7 +105,7 @@ public class RecipeListActivity extends BaseActivity implements
         super.onSaveInstanceState(outState);
 
         if (recipes != null) {
-            outState.putParcelableArrayList(RECIPE_KEY, (ArrayList<? extends Parcelable>) recipes);
+            outState.putParcelableArrayList(BUNDLE_RECIPE_KEY, (ArrayList<? extends Parcelable>) recipes);
         }
     }
 
@@ -131,7 +132,7 @@ public class RecipeListActivity extends BaseActivity implements
         recipeListRecyclerView.setAdapter(mRecipeListAdapter);
 
         mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimaryLight);
-        mSwipeRefreshLayout.setOnRefreshListener(this::refreshRecipe);
+        mSwipeRefreshLayout.setOnRefreshListener(() -> refreshRecipe(true));
     }
 
 
@@ -157,8 +158,10 @@ public class RecipeListActivity extends BaseActivity implements
         mSwipeRefreshLayout.setRefreshing(false);
     }
 
-    void refreshRecipe() {
-        if (isNetworkConnected()) {
+    @Override
+    public void refreshRecipe(boolean isRemote) {
+
+        if (isRemote && isNetworkConnected()) {
 
             refreshText.setVisibility(View.GONE);
             mPresenter.loadRecipes(true, idlingResource);
@@ -182,6 +185,7 @@ public class RecipeListActivity extends BaseActivity implements
 
     @Override
     public void onRecipeListClick(int recipeId) {
+        RecipeWidgetService.startActionUpdateRecipeWidgets(this, recipeId, recipes.get(recipeId-1).name());
         mPresenter.openRecipeDetails(recipeId);
     }
 }

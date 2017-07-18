@@ -13,8 +13,8 @@ import com.lethalskillzz.bakingapp.utils.FragmentUtils;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static com.lethalskillzz.bakingapp.utils.AppConstants.DEFAULT_ID;
-import static com.lethalskillzz.bakingapp.utils.AppConstants.RECIPE_ID;
+import static com.lethalskillzz.bakingapp.utils.AppConstants.BUNDLE_DEFAULT_ID;
+import static com.lethalskillzz.bakingapp.utils.AppConstants.BUNDLE_RECIPE_ID;
 
 public class RecipeDetailActivity extends BaseActivity  {
 
@@ -23,7 +23,7 @@ public class RecipeDetailActivity extends BaseActivity  {
 
     public static Intent getStartIntent(Context context, int recipeId) {
         Intent intent = new Intent(context, RecipeDetailActivity.class);
-        intent.putExtra(RECIPE_ID, recipeId);
+        intent.putExtra(BUNDLE_RECIPE_ID, recipeId);
         return intent;
     }
 
@@ -38,7 +38,7 @@ public class RecipeDetailActivity extends BaseActivity  {
 
         setUp();
 
-        int recipeId = getIntent().getIntExtra(RECIPE_ID, DEFAULT_ID);
+        int recipeId = getIntent().getIntExtra(BUNDLE_RECIPE_ID, BUNDLE_DEFAULT_ID);
 
         RecipeDetailFragment recipeDetailFragment =
                 (RecipeDetailFragment) getSupportFragmentManager()

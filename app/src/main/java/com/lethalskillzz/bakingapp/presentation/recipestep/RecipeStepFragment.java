@@ -184,7 +184,7 @@ public class RecipeStepFragment extends BaseFragment implements RecipeStepMvpVie
     }
 
     private void initializeMediaSession() {
-        mMediaSession = new MediaSessionCompat(getContext(), TAG);
+        mMediaSession = new MediaSessionCompat(getActivity().getApplicationContext(), TAG);
         mMediaSession.setFlags(
                 MediaSessionCompat.FLAG_HANDLES_MEDIA_BUTTONS |
                         MediaSessionCompat.FLAG_HANDLES_TRANSPORT_CONTROLS);

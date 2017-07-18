@@ -10,6 +10,7 @@ import com.lethalskillzz.bakingapp.R;
 import com.lethalskillzz.bakingapp.presentation.base.BaseActivity;
 import com.lethalskillzz.bakingapp.utils.FragmentUtils;
 
+import butterknife.BindBool;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -20,6 +21,9 @@ public class RecipeDetailActivity extends BaseActivity  {
 
     @BindView(R.id.recipe_detail_toolbar)
     Toolbar toolbar;
+
+    @BindBool(R.bool.master_detail_mode)
+    boolean masterDetailMode;
 
     public static Intent getStartIntent(Context context, int recipeId) {
         Intent intent = new Intent(context, RecipeDetailActivity.class);
@@ -50,6 +54,7 @@ public class RecipeDetailActivity extends BaseActivity  {
                     R.id.master_fragment_container);
 
         }
+
 
     }
 

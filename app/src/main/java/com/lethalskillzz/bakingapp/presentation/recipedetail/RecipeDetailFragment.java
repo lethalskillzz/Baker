@@ -160,7 +160,7 @@ public class RecipeDetailFragment extends BaseFragment implements
                     RecipeStepFragment.newInstance(step);
 
             FragmentUtils.replaceFragmentIn(
-                    getChildFragmentManager(),
+                    getActivity().getSupportFragmentManager(),
                     fragment,
                     R.id.detail_fragment_container);
         } else {

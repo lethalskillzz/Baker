@@ -15,8 +15,8 @@ import com.lethalskillzz.bakingapp.data.model.Ingredient;
 import com.lethalskillzz.bakingapp.data.model.Step;
 import com.lethalskillzz.bakingapp.di.component.ActivityComponent;
 import com.lethalskillzz.bakingapp.presentation.base.BaseFragment;
-import com.lethalskillzz.bakingapp.presentation.step.StepActivity;
-import com.lethalskillzz.bakingapp.presentation.step.StepFragment;
+import com.lethalskillzz.bakingapp.presentation.recipestep.RecipeStepActivity;
+import com.lethalskillzz.bakingapp.presentation.recipestep.RecipeStepFragment;
 import com.lethalskillzz.bakingapp.utils.FragmentUtils;
 import com.lethalskillzz.bakingapp.utils.StringUtils;
 
@@ -156,15 +156,15 @@ public class RecipeDetailFragment extends BaseFragment implements
     public void showStepDetails(int stepId, Step step) {
 
         if (masterDetailMode) {
-            StepFragment fragment =
-                    StepFragment.newInstance(step);
+            RecipeStepFragment fragment =
+                    RecipeStepFragment.newInstance(step);
 
             FragmentUtils.replaceFragmentIn(
                     getChildFragmentManager(),
                     fragment,
                     R.id.detail_fragment_container);
         } else {
-            startActivity(StepActivity.getStartIntent(getContext(), stepId, mSteps));
+            startActivity(RecipeStepActivity.getStartIntent(getContext(), stepId, mSteps));
         }
 
     }

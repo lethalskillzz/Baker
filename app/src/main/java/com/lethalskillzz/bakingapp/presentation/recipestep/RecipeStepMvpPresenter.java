@@ -1,4 +1,4 @@
-package com.lethalskillzz.bakingapp.presentation.step;
+package com.lethalskillzz.bakingapp.presentation.recipestep;
 
 import com.lethalskillzz.bakingapp.di.PerActivity;
 import com.lethalskillzz.bakingapp.presentation.base.MvpPresenter;
@@ -8,7 +8,7 @@ import com.lethalskillzz.bakingapp.presentation.base.MvpPresenter;
  */
 
 @PerActivity
-public interface StepMvpPresenter <V extends StepMvpView> extends MvpPresenter<V> {
+public interface RecipeStepMvpPresenter<V extends RecipeStepMvpView> extends MvpPresenter<V> {
 
     void fetchStepData(int recipeId, int stepId);
 }

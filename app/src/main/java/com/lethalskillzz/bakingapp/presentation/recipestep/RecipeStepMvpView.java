@@ -1,4 +1,4 @@
-package com.lethalskillzz.bakingapp.presentation.step;
+package com.lethalskillzz.bakingapp.presentation.recipestep;
 
 import com.lethalskillzz.bakingapp.presentation.base.MvpView;
 
@@ -6,7 +6,7 @@ import com.lethalskillzz.bakingapp.presentation.base.MvpView;
  * Created by ibrahimabdulkadir on 21/06/2017.
  */
 
-public interface StepMvpView extends MvpView {
+public interface RecipeStepMvpView extends MvpView {
 
     void showErrorMessage();
 

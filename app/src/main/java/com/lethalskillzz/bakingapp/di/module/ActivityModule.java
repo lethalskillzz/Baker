@@ -17,12 +17,12 @@ import com.lethalskillzz.bakingapp.presentation.recipelist.RecipeListAdapter;
 import com.lethalskillzz.bakingapp.presentation.recipelist.RecipeListMvpPresenter;
 import com.lethalskillzz.bakingapp.presentation.recipelist.RecipeListMvpView;
 import com.lethalskillzz.bakingapp.presentation.recipelist.RecipeListPresenter;
+import com.lethalskillzz.bakingapp.presentation.recipestep.RecipeStepPresenter;
 import com.lethalskillzz.bakingapp.presentation.splash.SplashMvpPresenter;
 import com.lethalskillzz.bakingapp.presentation.splash.SplashMvpView;
 import com.lethalskillzz.bakingapp.presentation.splash.SplashPresenter;
-import com.lethalskillzz.bakingapp.presentation.step.StepMvpPresenter;
-import com.lethalskillzz.bakingapp.presentation.step.StepMvpView;
-import com.lethalskillzz.bakingapp.presentation.step.StepPresenter;
+import com.lethalskillzz.bakingapp.presentation.recipestep.RecipeStepMvpPresenter;
+import com.lethalskillzz.bakingapp.presentation.recipestep.RecipeStepMvpView;
 
 import java.util.ArrayList;
 
@@ -93,8 +93,8 @@ public class ActivityModule {
 
     @Provides
     @PerActivity
-    StepMvpPresenter<StepMvpView> provideStepPresenter(
-            StepPresenter<StepMvpView> presenter) {
+    RecipeStepMvpPresenter<RecipeStepMvpView> provideStepPresenter(
+            RecipeStepPresenter<RecipeStepMvpView> presenter) {
         return presenter;
     }
 

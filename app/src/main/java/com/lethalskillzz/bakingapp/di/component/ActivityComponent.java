@@ -8,8 +8,8 @@ import com.lethalskillzz.bakingapp.presentation.recipedetail.RecipeDetailActivit
 import com.lethalskillzz.bakingapp.presentation.recipedetail.RecipeDetailFragment;
 import com.lethalskillzz.bakingapp.presentation.recipelist.RecipeListActivity;
 import com.lethalskillzz.bakingapp.presentation.splash.SplashActivity;
-import com.lethalskillzz.bakingapp.presentation.step.StepActivity;
-import com.lethalskillzz.bakingapp.presentation.step.StepFragment;
+import com.lethalskillzz.bakingapp.presentation.recipestep.RecipeStepActivity;
+import com.lethalskillzz.bakingapp.presentation.recipestep.RecipeStepFragment;
 
 import dagger.Component;
 
@@ -29,10 +29,10 @@ public interface ActivityComponent {
 
     void inject(RecipeListActivity activity);
 
-    void inject(StepActivity activity);
+    void inject(RecipeStepActivity activity);
 
     void inject(RecipeDetailFragment fragment);
 
-    void inject(StepFragment fragment);
+    void inject(RecipeStepFragment fragment);
 
 }

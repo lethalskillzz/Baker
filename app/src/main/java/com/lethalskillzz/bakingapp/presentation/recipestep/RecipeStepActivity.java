@@ -1,4 +1,4 @@
-package com.lethalskillzz.bakingapp.presentation.step;
+package com.lethalskillzz.bakingapp.presentation.recipestep;
 
 import android.content.Context;
 import android.content.Intent;
@@ -27,7 +27,7 @@ import static com.lethalskillzz.bakingapp.utils.AppConstants.BUNDLE_DEFAULT_ID;
 import static com.lethalskillzz.bakingapp.utils.AppConstants.BUNDLE_STEP_DATA;
 import static com.lethalskillzz.bakingapp.utils.AppConstants.BUNDLE_STEP_ID;
 
-public class StepActivity extends BaseActivity {
+public class RecipeStepActivity extends BaseActivity {
 
     @BindView(R.id.step_toolbar)
     Toolbar mToolbar;
@@ -42,7 +42,7 @@ public class StepActivity extends BaseActivity {
     private List<Step> mSteps = new ArrayList<>();
 
     public static Intent getStartIntent(Context context, int stepId, List<Step> steps) {
-        Intent intent = new Intent(context, StepActivity.class);
+        Intent intent = new Intent(context, RecipeStepActivity.class);
         intent.putExtra(BUNDLE_STEP_ID, stepId);
         intent.putParcelableArrayListExtra(BUNDLE_STEP_DATA, (ArrayList<? extends Parcelable>) steps);
         return intent;
@@ -51,7 +51,7 @@ public class StepActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_step);
+        setContentView(R.layout.activity_recipe_step);
 
         getActivityComponent().inject(this);
 
@@ -91,7 +91,7 @@ public class StepActivity extends BaseActivity {
         mViewPager.setAdapter(new FragmentStatePagerAdapter(fm) {
             @Override
             public Fragment getItem(int position) {
-                return StepFragment.newInstance(mSteps.get(position));
+                return RecipeStepFragment.newInstance(mSteps.get(position));
             }
             @Override
             public int getCount() {

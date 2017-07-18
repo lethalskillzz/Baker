@@ -1,4 +1,4 @@
-package com.lethalskillzz.bakingapp.presentation.step;
+package com.lethalskillzz.bakingapp.presentation.recipestep;
 
 import android.content.res.Configuration;
 import android.net.Uri;
@@ -48,12 +48,12 @@ import static com.lethalskillzz.bakingapp.utils.AppConstants.BUNDLE_STEP_DATA;
  * Created by ibrahimabdulkadir on 06/07/2017.
  */
 
-public class StepFragment extends BaseFragment implements StepMvpView, ExoPlayer.EventListener {
+public class RecipeStepFragment extends BaseFragment implements RecipeStepMvpView, ExoPlayer.EventListener {
 
-    private final String TAG = StepFragment.class.getSimpleName();
+    private final String TAG = RecipeStepFragment.class.getSimpleName();
 
     @Inject
-    StepMvpPresenter<StepMvpView> mPresenter;
+    RecipeStepMvpPresenter<RecipeStepMvpView> mPresenter;
 
     @BindString(R.string.error_default)
     String errorMessage;
@@ -73,10 +73,10 @@ public class StepFragment extends BaseFragment implements StepMvpView, ExoPlayer
     private PlaybackStateCompat.Builder mStateBuilder;
 
 
-    public static StepFragment newInstance(Step step) {
+    public static RecipeStepFragment newInstance(Step step) {
         Bundle args = new Bundle();
         args.putParcelable(BUNDLE_STEP_DATA, step);
-        StepFragment fragment = new StepFragment();
+        RecipeStepFragment fragment = new RecipeStepFragment();
         fragment.setArguments(args);
         return fragment;
     }
@@ -96,7 +96,7 @@ public class StepFragment extends BaseFragment implements StepMvpView, ExoPlayer
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_step, container, false);
+        View view = inflater.inflate(R.layout.fragment_recipe_step, container, false);
 
         ActivityComponent component = getActivityComponent();
         if (component != null) {

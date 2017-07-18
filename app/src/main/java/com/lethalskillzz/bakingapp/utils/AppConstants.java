@@ -13,8 +13,6 @@ public final class AppConstants {
     public static final String BUNDLE_RECIPE_ID = "bundleRecipeId";
     public static final String BUNDLE_STEP_ID = "bundleStepId";
     public static final String BUNDLE_RECIPE_NAME = "bundleStepName";
-
-
     public static final String BUNDLE_STEP_DATA = "bundleStepData";
 
     public static final int BUNDLE_DEFAULT_ID = 1;

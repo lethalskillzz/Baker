@@ -22,7 +22,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".presentation.ingredient.IngredientActivity" />
         <activity android:name=".presentation.recipedetail.RecipeDetailActivity" />
         <activity android:name=".presentation.recipelist.RecipeListActivity" />
         <activity android:name=".presentation.recipestep.RecipeStepActivity"/>

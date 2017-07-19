@@ -169,7 +169,7 @@ public class RecipeListActivity extends BaseActivity implements
         } else {
 
             mPresenter.loadRecipes(false, idlingResource);
-            hideLoading();
+            //hideLoading();
             showMessage(getString(R.string.error_no_internet));
         }
     }

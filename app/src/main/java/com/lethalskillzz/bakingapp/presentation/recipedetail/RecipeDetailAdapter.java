@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.lethalskillzz.bakingapp.R;
 import com.lethalskillzz.bakingapp.data.model.Step;
 import com.lethalskillzz.bakingapp.presentation.base.BaseViewHolder;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 import java.util.Locale;
@@ -115,7 +116,11 @@ public class RecipeDetailAdapter extends RecyclerView.Adapter<BaseViewHolder> {
             String desc = step.shortDescription();
 
             if(step.videoURL()!=null && !step.videoURL().matches("")) {
-                thumbImageView.setImageResource(R.drawable.ic_video);
+                Picasso.with(itemView.getContext())
+                        .load(step.thumbnailURL())
+                        .placeholder(R.drawable.ic_video)
+                        .error(R.drawable.ic_video)
+                        .into(thumbImageView);
             } else {
                 thumbImageView.setImageResource(R.drawable.ic_no_video);
             }

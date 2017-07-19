@@ -3,13 +3,12 @@ package com.lethalskillzz.bakingapp.di.component;
 
 import com.lethalskillzz.bakingapp.di.PerActivity;
 import com.lethalskillzz.bakingapp.di.module.ActivityModule;
-import com.lethalskillzz.bakingapp.presentation.ingredient.IngredientActivity;
 import com.lethalskillzz.bakingapp.presentation.recipedetail.RecipeDetailActivity;
 import com.lethalskillzz.bakingapp.presentation.recipedetail.RecipeDetailFragment;
 import com.lethalskillzz.bakingapp.presentation.recipelist.RecipeListActivity;
-import com.lethalskillzz.bakingapp.presentation.splash.SplashActivity;
 import com.lethalskillzz.bakingapp.presentation.recipestep.RecipeStepActivity;
 import com.lethalskillzz.bakingapp.presentation.recipestep.RecipeStepFragment;
+import com.lethalskillzz.bakingapp.presentation.splash.SplashActivity;
 
 import dagger.Component;
 
@@ -22,8 +21,6 @@ import dagger.Component;
 public interface ActivityComponent {
 
     void inject(SplashActivity activity);
-
-    void inject(IngredientActivity activity);
 
     void inject(RecipeDetailActivity activity);
 

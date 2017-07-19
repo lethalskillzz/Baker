@@ -60,10 +60,17 @@ public class RecipeStepActivity extends BaseActivity {
         mStepId = getIntent().getIntExtra(BUNDLE_STEP_ID, BUNDLE_DEFAULT_ID);
         mSteps = getIntent().getExtras().getParcelableArrayList(BUNDLE_STEP_DATA);
 
-
         setUp();
     }
 
+
+//    @Override
+//    public void onSaveInstanceState(Bundle outState) {
+//        super.onSaveInstanceState(outState);
+//
+//            outState.putInt(BUNDLE_TAB_KEY, mTabLayout.getSelectedTabPosition());
+//
+//    }
 
     @Override
     protected void setUp() {
@@ -84,7 +91,7 @@ public class RecipeStepActivity extends BaseActivity {
         //Fullscreen mode for non-tablet landscape orientation
         if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
             mToolbar.setVisibility(View.GONE);
-            mViewPager.setVisibility(View.GONE);
+            mTabLayout.setVisibility(View.GONE);
         }
 
         FragmentManager fm = getSupportFragmentManager();

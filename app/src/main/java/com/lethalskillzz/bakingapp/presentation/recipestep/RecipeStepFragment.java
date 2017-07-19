@@ -107,6 +107,7 @@ public class RecipeStepFragment extends BaseFragment implements RecipeStepMvpVie
         return view;
     }
 
+
     @Override
     protected void setUp(View view) {
 
@@ -115,6 +116,7 @@ public class RecipeStepFragment extends BaseFragment implements RecipeStepMvpVie
             initializePlayer(Uri.parse(mStep.videoURL()));
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE &&
                     !getResources().getBoolean(R.bool.master_detail_mode)) {
+
                 hideSystemUI();
                 mTextDirections.setVisibility(View.GONE);
                 mSimpleExoPlayerView.getLayoutParams().height = ViewGroup.LayoutParams.MATCH_PARENT;
@@ -126,6 +128,7 @@ public class RecipeStepFragment extends BaseFragment implements RecipeStepMvpVie
             mSimpleExoPlayerView.setVisibility(View.GONE);
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE &&
                     !getResources().getBoolean(R.bool.master_detail_mode)) {
+
                 hideSystemUI();
                 mTextDirections.setVisibility(View.GONE);
                 mImageNoVideo.setVisibility(View.VISIBLE);
@@ -133,8 +136,8 @@ public class RecipeStepFragment extends BaseFragment implements RecipeStepMvpVie
                 mTextDirections.setText(mStep.description());
             }
         }
-
     }
+
 
     @Override
     public void showErrorMessage() {
@@ -172,7 +175,10 @@ public class RecipeStepFragment extends BaseFragment implements RecipeStepMvpVie
     }
 
     private void hideSystemUI() {
-        ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
+
+        if(((AppCompatActivity) getActivity()).getSupportActionBar()!=null)
+            ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
+
         //Use Google's "LeanBack" mode to get fullscreen in landscape
         getActivity().getWindow().getDecorView().setSystemUiVisibility(
                 View.SYSTEM_UI_FLAG_LAYOUT_STABLE
@@ -182,6 +188,7 @@ public class RecipeStepFragment extends BaseFragment implements RecipeStepMvpVie
                         | View.SYSTEM_UI_FLAG_FULLSCREEN
                         | View.SYSTEM_UI_FLAG_IMMERSIVE);
     }
+
 
     private void initializeMediaSession() {
         mMediaSession = new MediaSessionCompat(getContext(), TAG);

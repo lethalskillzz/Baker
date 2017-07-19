@@ -6,9 +6,6 @@ import android.support.v7.widget.LinearLayoutManager;
 
 import com.lethalskillzz.bakingapp.di.ActivityContext;
 import com.lethalskillzz.bakingapp.di.PerActivity;
-import com.lethalskillzz.bakingapp.presentation.ingredient.IngredientMvpPresenter;
-import com.lethalskillzz.bakingapp.presentation.ingredient.IngredientMvpView;
-import com.lethalskillzz.bakingapp.presentation.ingredient.IngredientPresenter;
 import com.lethalskillzz.bakingapp.presentation.recipedetail.RecipeDetailAdapter;
 import com.lethalskillzz.bakingapp.presentation.recipedetail.RecipeDetailMvpPresenter;
 import com.lethalskillzz.bakingapp.presentation.recipedetail.RecipeDetailMvpView;
@@ -17,12 +14,12 @@ import com.lethalskillzz.bakingapp.presentation.recipelist.RecipeListAdapter;
 import com.lethalskillzz.bakingapp.presentation.recipelist.RecipeListMvpPresenter;
 import com.lethalskillzz.bakingapp.presentation.recipelist.RecipeListMvpView;
 import com.lethalskillzz.bakingapp.presentation.recipelist.RecipeListPresenter;
+import com.lethalskillzz.bakingapp.presentation.recipestep.RecipeStepMvpPresenter;
+import com.lethalskillzz.bakingapp.presentation.recipestep.RecipeStepMvpView;
 import com.lethalskillzz.bakingapp.presentation.recipestep.RecipeStepPresenter;
 import com.lethalskillzz.bakingapp.presentation.splash.SplashMvpPresenter;
 import com.lethalskillzz.bakingapp.presentation.splash.SplashMvpView;
 import com.lethalskillzz.bakingapp.presentation.splash.SplashPresenter;
-import com.lethalskillzz.bakingapp.presentation.recipestep.RecipeStepMvpPresenter;
-import com.lethalskillzz.bakingapp.presentation.recipestep.RecipeStepMvpView;
 
 import java.util.ArrayList;
 
@@ -67,12 +64,6 @@ public class ActivityModule {
         return presenter;
     }
 
-    @Provides
-    @PerActivity
-    IngredientMvpPresenter<IngredientMvpView> provideIngredientPresenter(
-            IngredientPresenter<IngredientMvpView> presenter) {
-        return presenter;
-    }
 
 
     @Provides

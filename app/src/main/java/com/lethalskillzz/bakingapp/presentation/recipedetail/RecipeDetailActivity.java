@@ -52,9 +52,7 @@ public class RecipeDetailActivity extends BaseActivity  {
             recipeDetailFragment = RecipeDetailFragment.newInstance(recipeId);
             FragmentUtils.addFragmentTo(getSupportFragmentManager(), recipeDetailFragment,
                     R.id.master_fragment_container);
-
         }
-
 
     }
 

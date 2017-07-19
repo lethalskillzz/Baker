@@ -114,13 +114,20 @@ public class RecipeDetailAdapter extends RecyclerView.Adapter<BaseViewHolder> {
             final Step step = mStepList.get(position);
             int stepId = step.id();
             String desc = step.shortDescription();
+            String vidUrl = step.videoURL();
+            String thumbUrl = step.thumbnailURL();
 
-            if(step.videoURL()!=null && !step.videoURL().matches("")) {
-                Picasso.with(itemView.getContext())
-                        .load(step.thumbnailURL())
-                        .placeholder(R.drawable.ic_video)
-                        .error(R.drawable.ic_video)
-                        .into(thumbImageView);
+            if(vidUrl!=null && !vidUrl.matches("")) {
+
+                if(thumbUrl.isEmpty()) {
+                    thumbImageView.setImageResource(R.drawable.ic_video);
+                }else {
+                    Picasso.with(itemView.getContext())
+                            .load(step.thumbnailURL())
+                            .placeholder(R.drawable.ic_video)
+                            .error(R.drawable.ic_video)
+                            .into(thumbImageView);
+                }
             } else {
                 thumbImageView.setImageResource(R.drawable.ic_no_video);
             }

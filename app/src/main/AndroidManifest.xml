@@ -22,9 +22,24 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".presentation.recipedetail.RecipeDetailActivity" />
+
         <activity android:name=".presentation.recipelist.RecipeListActivity" />
-        <activity android:name=".presentation.recipestep.RecipeStepActivity"/>
+
+        <activity android:name=".presentation.recipedetail.RecipeDetailActivity"
+            android:parentActivityName=".presentation.recipedetail.RecipeDetailActivity" >
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".presentation.recipedetail.RecipeDetailActivity" />
+        </activity>
+
+        <activity android:name=".presentation.recipestep.RecipeStepActivity"
+            android:parentActivityName=".presentation.recipedetail.RecipeDetailActivity" >
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".presentation.recipedetail.RecipeDetailActivity" />
+        </activity>
 
         <receiver android:name=".presentation.widget.RecipeWidgetProvider">
             <intent-filter>

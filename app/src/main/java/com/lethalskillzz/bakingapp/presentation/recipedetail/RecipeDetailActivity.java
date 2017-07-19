@@ -20,7 +20,7 @@ import static com.lethalskillzz.bakingapp.utils.AppConstants.BUNDLE_RECIPE_ID;
 public class RecipeDetailActivity extends BaseActivity  {
 
     @BindView(R.id.recipe_detail_toolbar)
-    Toolbar toolbar;
+    Toolbar mToolbar;
 
     @BindBool(R.bool.master_detail_mode)
     boolean masterDetailMode;
@@ -59,10 +59,10 @@ public class RecipeDetailActivity extends BaseActivity  {
     @Override
     protected void setUp() {
 
-        setSupportActionBar(toolbar);
+        setSupportActionBar(mToolbar);
         if(getSupportActionBar() != null){
-            toolbar.setTitleTextColor(ContextCompat.getColor(this,R.color.white));
-            toolbar.setTitle(R.string.recipes_label);
+            mToolbar.setTitleTextColor(ContextCompat.getColor(this,R.color.white));
+            mToolbar.setTitle(R.string.recipes_label);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 

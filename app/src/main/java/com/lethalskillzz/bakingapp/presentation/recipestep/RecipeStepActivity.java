@@ -9,6 +9,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -74,6 +75,13 @@ public class RecipeStepActivity extends BaseActivity {
 
     @Override
     protected void setUp() {
+
+        setSupportActionBar(mToolbar);
+        if(getSupportActionBar() != null){
+            mToolbar.setTitleTextColor(ContextCompat.getColor(this,R.color.white));
+            mToolbar.setTitle(R.string.recipes_label);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
 
         for(Step step : mSteps) {
             if(step.id() == 0)

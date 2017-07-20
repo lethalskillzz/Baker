@@ -83,7 +83,7 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
         TextView stepsCount;
 
 //        @BindView(R.id.item_recipe_list_servings_count)
-//        TextView servinsCount;
+//        TextView servingsCount;
 
         @BindString(R.string.recipe_ingredients_text)
         String ingredientsText;
@@ -113,33 +113,73 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
 
                 case "Nutella Pie": {
 
-                    Picasso.with(itemView.getContext()).
-                            load(R.drawable.pie)
-                            .into(recipeImage);
+                    if(!recipe.image().isEmpty()) {
+
+                        Picasso.with(itemView.getContext()).
+                                load(recipe.image())
+                                .placeholder(R.drawable.pie)
+                                .error(R.drawable.pie)
+                                .into(recipeImage);
+                    } else {
+
+                        Picasso.with(itemView.getContext()).
+                                load(R.drawable.pie)
+                                .into(recipeImage);
+                    }
                 }
                 break;
 
                 case "Brownies": {
 
-                    Picasso.with(itemView.getContext()).
-                            load(R.drawable.brownie)
-                            .into(recipeImage);
+                    if(!recipe.image().isEmpty()) {
+
+                        Picasso.with(itemView.getContext()).
+                                load(recipe.image())
+                                .placeholder(R.drawable.brownie)
+                                .error(R.drawable.brownie)
+                                .into(recipeImage);
+                    } else {
+
+                        Picasso.with(itemView.getContext()).
+                                load(R.drawable.brownie)
+                                .into(recipeImage);
+                    }
                 }
                 break;
 
                 case "Yellow Cake": {
 
-                    Picasso.with(itemView.getContext()).
-                            load(R.drawable.cake)
-                            .into(recipeImage);
+                    if(!recipe.image().isEmpty()) {
+
+                        Picasso.with(itemView.getContext()).
+                                load(recipe.image())
+                                .placeholder(R.drawable.cake)
+                                .error(R.drawable.cake)
+                                .into(recipeImage);
+                    } else {
+
+                        Picasso.with(itemView.getContext()).
+                                load(R.drawable.cake)
+                                .into(recipeImage);
+                    }
                 }
                 break;
 
                 case "Cheesecake": {
 
-                    Picasso.with(itemView.getContext()).
-                            load(R.drawable.cheese)
-                            .into(recipeImage);
+                    if(!recipe.image().isEmpty()) {
+
+                        Picasso.with(itemView.getContext()).
+                                load(recipe.image())
+                                .placeholder(R.drawable.cheese)
+                                .error(R.drawable.cheese)
+                                .into(recipeImage);
+                    } else {
+
+                        Picasso.with(itemView.getContext()).
+                                load(R.drawable.cheese)
+                                .into(recipeImage);
+                    }
                 }
                 break;
 

@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar;
 
 import com.lethalskillzz.bakingapp.R;
 import com.lethalskillzz.bakingapp.presentation.base.BaseActivity;
+import com.lethalskillzz.bakingapp.utils.AppLogger;
 import com.lethalskillzz.bakingapp.utils.FragmentUtils;
 
 import butterknife.BindBool;
@@ -15,6 +16,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import static com.lethalskillzz.bakingapp.utils.AppConstants.BUNDLE_DEFAULT_ID;
+import static com.lethalskillzz.bakingapp.utils.AppConstants.BUNDLE_FRAGMENT_KEY;
 import static com.lethalskillzz.bakingapp.utils.AppConstants.BUNDLE_RECIPE_ID;
 
 public class RecipeDetailActivity extends BaseActivity  {
@@ -24,6 +26,8 @@ public class RecipeDetailActivity extends BaseActivity  {
 
     @BindBool(R.bool.master_detail_mode)
     boolean masterDetailMode;
+
+    RecipeDetailFragment recipeDetailFragment;
 
     public static Intent getStartIntent(Context context, int recipeId) {
         Intent intent = new Intent(context, RecipeDetailActivity.class);
@@ -44,17 +48,36 @@ public class RecipeDetailActivity extends BaseActivity  {
 
         int recipeId = getIntent().getIntExtra(BUNDLE_RECIPE_ID, BUNDLE_DEFAULT_ID);
 
-        RecipeDetailFragment recipeDetailFragment =
+        recipeDetailFragment =
                 (RecipeDetailFragment) getSupportFragmentManager()
                         .findFragmentById(R.id.master_fragment_container);
 
-        if (recipeDetailFragment == null) {
+        if (recipeDetailFragment != null) {
+            AppLogger.e("if");
+                recipeDetailFragment = (RecipeDetailFragment) getSupportFragmentManager()
+                        .getFragment(savedInstanceState, BUNDLE_FRAGMENT_KEY);
+        } else {
+            AppLogger.e("else");
             recipeDetailFragment = RecipeDetailFragment.newInstance(recipeId);
             FragmentUtils.addFragmentTo(getSupportFragmentManager(), recipeDetailFragment,
                     R.id.master_fragment_container);
         }
 
+
+
     }
+
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        if (recipeDetailFragment.isAdded()) {
+            getSupportFragmentManager().putFragment(outState, BUNDLE_FRAGMENT_KEY, recipeDetailFragment);
+        }
+
+    }
+
 
     @Override
     protected void setUp() {

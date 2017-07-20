@@ -17,7 +17,7 @@ public final class AppConstants {
 
     public static final int BUNDLE_DEFAULT_ID = 1;
 
-    public static final String BUNDLE_TAB_KEY = "bundleTabKey";
+    public static final String BUNDLE_FRAGMENT_KEY = "bundleFragmentKey";
 
 
     public static final String RECIPE_WIDGET_ACTION_UPDATE = "recipeWidgetActionUpdate";

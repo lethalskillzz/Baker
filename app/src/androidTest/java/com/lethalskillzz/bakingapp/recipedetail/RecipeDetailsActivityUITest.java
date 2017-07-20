@@ -51,7 +51,7 @@ public class RecipeDetailsActivityUITest {
     onView(
         allOf(
             withId(R.id.fragment_step_exo_player_view),
-            withParent(withParent(withId(R.id.step_viewpager))),
+            withParent(withParent(withId(R.id.recipe_step_layout))),
             isDisplayed()))
         .check(matches(isDisplayed()));
   }
@@ -65,7 +65,7 @@ public class RecipeDetailsActivityUITest {
     onView(
         allOf(
             withId(R.id.fragment_step_exo_player_view),
-            withParent(withParent(withId(R.id.step_viewpager))),
+            withParent(withParent(withId(R.id.recipe_step_layout))),
             isDisplayed()))
         .check(doesNotExist());
   }

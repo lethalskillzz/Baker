@@ -65,13 +65,6 @@ public class RecipeStepActivity extends BaseActivity {
     }
 
 
-//    @Override
-//    public void onSaveInstanceState(Bundle outState) {
-//        super.onSaveInstanceState(outState);
-//
-//            outState.putInt(BUNDLE_TAB_KEY, mTabLayout.getSelectedTabPosition());
-//
-//    }
 
     @Override
     protected void setUp() {

@@ -14,10 +14,6 @@
             android:layout_height="wrap_content"
             android:focusableInTouchMode="true">
 
-            <!--app:cardCornerRadius="10dp"-->
-            <!--app:cardPreventCornerOverlap="false"-->
-            <!--app:cardUseCompatPadding="true"-->
-            <!--app:cardElevation="4dp"-->
             <RelativeLayout
                 android:id="@+id/recipe_detail_ingredient_heading_holder"
                 android:layout_width="0dp"

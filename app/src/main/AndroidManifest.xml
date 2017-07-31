@@ -8,7 +8,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
-        android:name="com.lethalskillzz.bakingapp.App"
+        android:name="com.lethalskillzz.bakingapp.com.lethalskillzz.baker.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -16,32 +16,32 @@
         android:theme="@style/MaterialTheme">
 
         <activity
-            android:name=".presentation.splash.SplashActivity">
+            android:name="com.lethalskillzz.baker.presentation.splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".presentation.recipelist.RecipeListActivity" />
+        <activity android:name="com.lethalskillzz.baker.presentation.recipelist.RecipeListActivity" />
 
-        <activity android:name=".presentation.recipedetail.RecipeDetailActivity"
-            android:parentActivityName=".presentation.recipedetail.RecipeDetailActivity" >
+        <activity android:name="com.lethalskillzz.baker.presentation.recipedetail.RecipeDetailActivity"
+            android:parentActivityName="com.lethalskillzz.baker.presentation.recipedetail.RecipeDetailActivity" >
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".presentation.recipedetail.RecipeDetailActivity" />
+                android:value="com.lethalskillzz.baker.presentation.recipedetail.RecipeDetailActivity" />
         </activity>
 
-        <activity android:name=".presentation.recipestep.RecipeStepActivity"
-            android:parentActivityName=".presentation.recipedetail.RecipeDetailActivity" >
+        <activity android:name="com.lethalskillzz.baker.presentation.recipestep.RecipeStepActivity"
+            android:parentActivityName="com.lethalskillzz.baker.presentation.recipedetail.RecipeDetailActivity" >
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".presentation.recipedetail.RecipeDetailActivity" />
+                android:value="com.lethalskillzz.baker.presentation.recipedetail.RecipeDetailActivity" />
         </activity>
 
-        <receiver android:name=".presentation.widget.RecipeWidgetProvider">
+        <receiver android:name="com.lethalskillzz.baker.presentation.widget.RecipeWidgetProvider">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
             </intent-filter>
@@ -50,7 +50,7 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/recipe_widget_provider_info"/>
         </receiver>
-        <service android:name=".presentation.widget.RecipeWidgetService" />
+        <service android:name="com.lethalskillzz.baker.presentation.widget.RecipeWidgetService" />
 
     </application>
 

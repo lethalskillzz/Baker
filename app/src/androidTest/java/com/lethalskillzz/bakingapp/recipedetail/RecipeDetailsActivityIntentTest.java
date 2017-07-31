@@ -7,7 +7,7 @@ import android.support.test.filters.LargeTest;
 import android.support.test.runner.AndroidJUnit4;
 
 import com.lethalskillzz.bakingapp.R;
-import com.lethalskillzz.bakingapp.presentation.recipedetail.RecipeDetailActivity;
+import com.lethalskillzz.baker.presentation.recipedetail.RecipeDetailActivity;
 
 import org.junit.Rule;
 import org.junit.Test;

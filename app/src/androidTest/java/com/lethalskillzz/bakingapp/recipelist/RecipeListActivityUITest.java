@@ -8,7 +8,7 @@ import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
 import com.lethalskillzz.bakingapp.R;
-import com.lethalskillzz.bakingapp.presentation.recipelist.RecipeListActivity;
+import com.lethalskillzz.baker.presentation.recipelist.RecipeListActivity;
 
 import org.junit.After;
 import org.junit.Before;

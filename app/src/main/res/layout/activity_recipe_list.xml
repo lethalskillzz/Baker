@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".presentation.recipelist.RecipeListActivity"
+    tools:context="com.lethalskillzz.baker.presentation.recipelist.RecipeListActivity"
     >
 
     <android.support.design.widget.AppBarLayout

@@ -107,7 +107,6 @@ public abstract class BaseFragment extends Fragment implements MvpView {
         }
     }
 
-
     public ActivityComponent getActivityComponent() {
         if (mActivity != null) {
             return mActivity.getActivityComponent();

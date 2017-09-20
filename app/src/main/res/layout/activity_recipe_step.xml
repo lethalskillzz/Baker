@@ -14,13 +14,13 @@
         android:descendantFocusability="beforeDescendants"
         android:focusableInTouchMode="true"
         >
+
         <include
             android:id="@+id/step_toolbar"
             layout="@layout/toolbar"
             />
 
     </android.support.design.widget.AppBarLayout>
-
 
     <LinearLayout
         android:id="@+id/step_layout"

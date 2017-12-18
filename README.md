@@ -15,11 +15,9 @@ An app to view video recipes
 <p align="center">
 
 <img src="art/device-2017-07-11-163227.png" width="90%">
-
 </p>
 
 <p align="center">
 
 <img src="art/device-2017-07-31-205023.png" width="90%">
-
 </p>
